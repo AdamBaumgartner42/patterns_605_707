@@ -7,6 +7,8 @@
         "Node.C": "cpp",
         "Document.C": "cpp",
         "Element.C": "cpp",
-        "Test.C": "cpp"
+        "Test.C": "cpp",
+        "Text.C": "cpp",
+        "XMLTokenizer.C": "cpp"
     }
 }
