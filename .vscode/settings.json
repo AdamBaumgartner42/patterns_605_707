@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "XMLValidator.C": "cpp",
+        "XMLSerializer.C": "cpp",
+        "Attr.C": "cpp",
+        "NamedNodeMap.C": "cpp",
+        "Node.C": "cpp",
+        "Document.C": "cpp",
+        "Element.C": "cpp",
+        "Test.C": "cpp"
+    }
+}
