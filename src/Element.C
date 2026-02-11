@@ -139,3 +139,8 @@ dom::Attr *		Element_Impl::setAttributeNode(dom::Attr * newAttr)
 	attributes.push_back(newAttr);
 	return oldAttribute;
 }
+
+void Element_Impl::serialize (std::ostream& os)
+{
+	os << "Adam - Element";
+}

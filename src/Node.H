@@ -2,6 +2,7 @@
 #define NODE_H
 
 #include <string>
+#include <ostream>
 #include "NodeList.H"
 
 namespace dom
@@ -35,6 +36,7 @@ namespace dom
 		virtual Node *			appendChild(Node * newChild)			= 0;
 		virtual bool			hasChildNodes(void)				= 0;
 		virtual const std::string &	getLocalName(void)				= 0;
+		virtual void serialize(std::ostream& os) = 0;
 	};
 
 	class DOMException
@@ -96,6 +98,7 @@ public:
 	virtual const std::string &	getLocalName(void);
 
 	virtual void setParent(dom::Node * parent);
+	void serialize(std::ostream& os);
 };
 
 #endif // NODE_H

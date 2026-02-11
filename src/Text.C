@@ -105,3 +105,8 @@ dom::Text *		Text_Impl::splitText(int offset)
 		throw dom::DOMException(dom::DOMException::INDEX_SIZE_ERR, "Index larget than Text node's value.");
 	}
 }
+
+void Text_Impl::serialize (std::ostream& os)
+{
+	os << "Adam - Text";
+}

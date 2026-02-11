@@ -2,6 +2,7 @@
 #define DOCUMENT_H
 
 #include <string>
+#include <ostream>
 
 #include "Node.H"
 
@@ -33,6 +34,8 @@ public:
 	virtual dom::Text *	createTextNode(const std::string & data);
 	virtual dom::Attr *	createAttribute(const std::string & name);
 	virtual dom::Element *	getDocumentElement();
+
+	void serialize(std::ostream& os);
 };
 
 #endif // DOCUMENT_H

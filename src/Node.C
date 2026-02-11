@@ -176,3 +176,8 @@ dom::Node *		Node_Impl::getSibling(int direction)
 			return *i;
 	}
 }
+
+void Node_Impl::serialize (std::ostream& os)
+{
+	os << "Adam - Node";
+}

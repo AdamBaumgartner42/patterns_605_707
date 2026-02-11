@@ -2,6 +2,7 @@
 #define TEXT_H
 
 #include <string>
+#include <ostream>
 
 #include "Node.H"
 
@@ -50,6 +51,7 @@ public:
 	virtual void			deleteData(int offset, int count);
 	virtual void			replaceData(int offset, int count, const std::string & arg);
 	virtual dom::Text *		splitText(int offset);
+	void serialize(std::ostream& os);
 };
 
 #endif // TEXT_H

@@ -34,3 +34,8 @@ dom::Element * Document_Impl::getDocumentElement()
 
 	return 0;
 }
+
+void Document_Impl::serialize (std::ostream& os)
+{
+	os << "Adam - Document";
+}
