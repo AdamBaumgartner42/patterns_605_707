@@ -34,3 +34,8 @@ dom::Element * Document_Impl::getDocumentElement()
 
 	return 0;
 }
+
+dom::Document * Document_Impl_Factory::createDocument()
+{
+	return new Document_Impl;
+}

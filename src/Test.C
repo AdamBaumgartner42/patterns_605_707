@@ -46,7 +46,8 @@ int main(int argc, char** argv)
 
 void testTokenizer(int argc, char** argv)
 {
-	dom::Document *	document	= new Document_Impl;
+	Document_Impl_Factory document_factory;
+	dom::Document * document = document_factory.createDocument();
 
 	dom::Element *	element	= document->createElement("NewElement");
 	dom::Text *	text	= document->createTextNode("Text Data");
@@ -107,7 +108,8 @@ void testSerializer(int argc, char** argv)
 	//   </element>
 	// </document>
 	//
-	dom::Document *	document	= new Document_Impl;
+	Document_Impl_Factory document_factory;
+	dom::Document * document = document_factory.createDocument();
 	dom::Element *	root		= document->createElement("document");
 	document->appendChild(root);
 
@@ -178,7 +180,8 @@ void testValidator(int argc, char** argv)
 	schemaElement->addValidChild("attribute2", true);
 	schemaElement->setCanHaveText(true);
 
-	dom::Document *	document	= new Document_Impl;
+	Document_Impl_Factory document_factory;
+	dom::Document * document = document_factory.createDocument();
 	dom::Element *	root		= 0;
 	dom::Element *	child		= 0;
 	dom::Attr *	attr		= 0;

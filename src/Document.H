@@ -35,4 +35,17 @@ public:
 	virtual dom::Element *	getDocumentElement();
 };
 
+class DocumentFactory
+{
+public:
+	virtual ~DocumentFactory() {}
+	virtual dom::Document * createDocument() = 0;
+};
+
+class Document_Impl_Factory : public DocumentFactory
+{
+public: 
+	virtual dom::Document * createDocument();
+};
+
 #endif // DOCUMENT_H
