@@ -77,11 +77,10 @@ void XMLSerializer::serializeMinimal(dom::Node * node)
 {
 	if (dynamic_cast<dom::Document *>(node) != 0)
 	{
-		file << "<? xml version=\"1.0\" encoding=\"UTF-8\"?>";
-		serializeMinimal(dynamic_cast<dom::Document *>(node)->getDocumentElement());
-
-		// If we know its Document node, we could call serialize on it from here
+		// file << "<? xml version=\"1.0\" encoding=\"UTF-8\"?>";
 		node->serialize(file);
+		serializeMinimal(dynamic_cast<dom::Document *>(node)->getDocumentElement());
+		
 	}
 	else if (dynamic_cast<dom::Element *>(node) != 0)
 	{
