@@ -32,7 +32,7 @@ namespace dom
 	};
 };
 
-class Element_Impl : public virtual dom::Element, Node_Impl
+class Element_Impl : public virtual dom::Element, CompositeNode_Impl
 {
 private:
 	NamedNodeMap_Impl	attributes;

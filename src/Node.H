@@ -67,11 +67,10 @@ private:
 	std::string	value;
 	short		nodeType;
 	dom::Node *	parent;
-	dom::NodeList	nodes;
-
-	dom::Node *			getSibling(int direction);
+	dom::Node *	getSibling(int direction);
 protected:
 	dom::Document *	document;
+	dom::NodeList emptyNodes;
 
 	Node_Impl(const std::string & name, short type);
 public:
@@ -96,6 +95,26 @@ public:
 	virtual const std::string &	getLocalName(void);
 
 	virtual void setParent(dom::Node * parent);
+};
+
+class CompositeNode_Impl : public virtual Node_Impl
+{
+private:
+	dom::NodeList nodes;
+	dom::Node * getSibling(int direction);
+
+protected: 
+	CompositeNode_Impl(const std::string & name, short type);
+	virtual ~CompositeNode_Impl();
+
+	virtual dom::NodeList * 	getChildNodes(void);
+	virtual dom::Node * 		getFirstChild(void);
+	virtual dom::Node *			getLastChild(void);
+	virtual dom::Node *			insertBefore(dom::Node * newChild, dom::Node * refChild);
+	virtual dom::Node *			replaceChild(dom::Node * newChild, dom::Node * oldChild);
+	virtual dom::Node * 		removeChild(dom::Node * oldChild);
+	virtual dom::Node *			appendChild(dom::Node * newChild);
+	virtual bool				hasChildNodes(void);
 };
 
 #endif // NODE_H
