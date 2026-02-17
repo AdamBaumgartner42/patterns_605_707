@@ -75,40 +75,58 @@ void XMLSerializer::serializePretty(dom::Node * node)
 
 void XMLSerializer::serializeMinimal(dom::Node * node)
 {
+	dom::Node *	root = node;
+
 	if (dynamic_cast<dom::Document *>(node) != 0)
 	{
 		file << "<? xml version=\"1.0\" encoding=\"UTF-8\"?>";
-		serializeMinimal(dynamic_cast<dom::Document *>(node)->getDocumentElement());
+		root = dynamic_cast<dom::Document *>(node)->getDocumentElement();
 	}
-	else if (dynamic_cast<dom::Element *>(node) != 0)
+
+	if (root == 0)
 	{
-		file << "<" << dynamic_cast<dom::Element *>(node)->getTagName();
+		return;
+	}
 
-		for (dom::NamedNodeMap::iterator i = dynamic_cast<dom::Element *>(node)->getAttributes()->begin();
-		  i != dynamic_cast<dom::Element *>(node)->getAttributes()->end();
-		  i++)
-			serializeMinimal(*i);
+	dom::NodeIterator * iterator = root->createIterator();
 
-		if (dynamic_cast<dom::Element *>(node)->getChildNodes()->size() == 0)
-			file << "/>";
-		else
+	while(iterator->hasNext())
+	{
+		dom::TraversalStep step = iterator->next();
+		dom::Node * current = step.node;
+
+		if (dynamic_cast<dom::Element *>(current) != 0)
 		{
-			file << ">";
+			dom::Element * element = dynamic_cast<dom::Element *>(current);
+			if (step.isOpening)
+			{
+				file << "<" << element->getTagName();
+				for (dom::NamedNodeMap::iterator i = dynamic_cast<dom::Element *>(node)->getAttributes()->begin();
+					i != dynamic_cast<dom::Element *>(node)->getAttributes()->end();
+					i++)
+				{
+					file << " " << dynamic_cast<dom::Attr *>(*i)->getName() <<"=\"" << dynamic_cast<dom::Attr *>(*i)->getValue() << "\"";
 
-			for (dom::NodeList::iterator i = dynamic_cast<dom::Element *>(node)->getChildNodes()->begin();
-			  i != dynamic_cast<dom::Element *>(node)->getChildNodes()->end();
-			  i++)
-				if (dynamic_cast<dom::Element *>(*i) != 0 || dynamic_cast<dom::Text *>(*i) != 0)
-					serializeMinimal(*i);
-
-			file << "</" << dynamic_cast<dom::Element *>(node)->getTagName() + ">";
+					if (element->hasChildNodes())
+					{
+						file << ">";
+					}
+					else
+					{
+						file << "/>";
+					}
+				}	
+			}
+			else
+			{
+				file << "</" << element->getTagName() << ">";
+			}
+		}
+		else if (step.isOpening && dynamic_cast<dom::Text *>(current) != 0)
+		{
+			file << dynamic_cast<dom::Text *>(current)->getData();
 		}
 	}
-	else if (dynamic_cast<dom::Attr *>(node) != 0)
-	{
-		file <<
-		  " " << dynamic_cast<dom::Attr *>(node)->getName() << "=\"" << dynamic_cast<dom::Attr *>(node)->getValue() << "\"";
-	}
-	else if (dynamic_cast<dom::Text *>(node) != 0)
-		file << dynamic_cast<dom::Text *>(node)->getData();
+
+	delete iterator;
 }

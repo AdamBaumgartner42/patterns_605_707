@@ -1,0 +1,30 @@
+@startuml
+class Client
+
+class Node {
++CreateIterator
+}
+
+class Node_Impl{
++CreateIterator
+}
+
+class NodeIterator{
++hasNext
++next
+}
+
+class DepthFirstNodeIterator{
+}
+
+Client -> Node
+Client -> NodeIterator
+
+Node <|-- Node_Impl
+NodeIterator <|-- DepthFirstNodeIterator
+
+Node_Impl -> DepthFirstNodeIterator : <<instantiates>>
+Node_Impl-[hidden] DepthFirstNodeIterator
+Node_Impl "1" <- DepthFirstNodeIterator
+
+@enduml
