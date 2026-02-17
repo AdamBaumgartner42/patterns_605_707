@@ -1,0 +1,28 @@
+@startuml
+
+class Client
+class Node_Impl
+class CompositeNode_Impl
+
+package "Composite" {
+    class Document
+    class Element
+}
+
+package "Leaf" {
+    class Text
+    class Attr
+}
+
+Client -> Node_Impl
+
+Node_Impl --o CompositeNode_Impl : children
+Node_Impl <|-- CompositeNode_Impl
+
+CompositeNode_Impl <|-- Document
+CompositeNode_Impl <|-- Element
+
+Node_Impl <|-- Text
+Node_Impl <|-- Attr
+
+@enduml
