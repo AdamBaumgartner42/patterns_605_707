@@ -251,3 +251,82 @@ bool CompositeNode_Impl::hasChildNodes(void)
 {
 	return nodes.size() > 0;
 }
+
+const std::string &	Node_Impl::getLocalName(void)
+{
+	return name;
+}
+
+dom::NodeIterator *	Node_Impl::createIterator(void)
+{
+	return new DepthFirstNodeIterator(this);
+}
+
+void Node_Impl::setParent(dom::Node * parent)
+{
+	this->parent	= parent;
+}
+
+dom::Node *		Node_Impl::getSibling(int direction)
+{
+	if (parent == 0)
+		return 0;
+
+	dom::NodeList::iterator	i	= parent->getChildNodes()->find(this);
+
+	if (direction < 0)
+	{
+		if (i == parent->getChildNodes()->begin())
+			return 0;
+		else
+			return *(--i);
+	}
+	else
+	{
+		i++;
+
+		if (i == parent->getChildNodes()->end())
+			return 0;
+		else
+			return *i;
+	}
+}
+
+DepthFirstNodeIterator::DepthFirstNodeIterator(dom::Node * root)
+{
+	if (root != 0)
+	{
+		stack.push_back(StackEntry(root, false));
+	}
+}
+
+bool DepthFirstNodeIterator::hasNext(void)
+{
+	return stack.size() > 0;
+}
+
+dom::TraversalStep	DepthFirstNodeIterator::next(void)
+{
+	StackEntry entry = stack.back();
+	stack.pop_back();
+
+	if (entry.isClosing)
+	{
+		return dom::TraversalStep(entry.node, false);
+	}
+
+	if (entry.node->getNodeType() == dom::Node::ELEMENT_NODE)
+	{
+		if (entry.node->hasChildNodes()){
+			stack.push_back(StackEntry(entry.node, true));
+		}
+
+		for (dom::NodeList::reverse_iterator i = entry.node->getChildNodes()->rbegin();
+		  i != entry.node->getChildNodes()->rend();
+		  i++){
+			stack.push_back(StackEntry(*i, false));
+		  }	
+	}
+	
+	return dom::TraversalStep(entry.node, true);
+}

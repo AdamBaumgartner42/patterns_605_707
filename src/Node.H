@@ -2,11 +2,31 @@
 #define NODE_H
 
 #include <string>
+#include <vector>
 #include "NodeList.H"
 
 namespace dom
-{
+{	
+	class Node;
 	class Document;
+	class NodeIterator;
+
+	struct TraversalStep
+	{
+		Node * node;
+		bool isOpening;
+
+		TraversalStep(Node * n = 0, bool open = true) : node(n), isOpening(open) {}
+	};
+
+	class NodeIterator
+	{
+	public:
+		virtual ~NodeIterator() {}
+
+		virtual bool hasNext(void) = 0;
+		virtual TraversalStep next(void) = 0;
+	};
 
 	class Node
 	{
@@ -35,6 +55,7 @@ namespace dom
 		virtual Node *			appendChild(Node * newChild)			= 0;
 		virtual bool			hasChildNodes(void)				= 0;
 		virtual const std::string &	getLocalName(void)				= 0;
+		virtual NodeIterator *	createIterator(void) 			= 0;
 	};
 
 	class DOMException
@@ -93,8 +114,28 @@ public:
 	virtual dom::Node *		appendChild(dom::Node * newChild);
 	virtual bool			hasChildNodes(void);
 	virtual const std::string &	getLocalName(void);
+	virtual dom::NodeIterator * createIterator(void);
 
 	virtual void setParent(dom::Node * parent);
+};
+
+class DepthFirstNodeIterator : public dom::NodeIterator
+{
+private:
+	struct StackEntry
+	{
+		dom::Node *	node;
+		bool		isClosing;
+
+		StackEntry(dom::Node * n, bool closing) : node(n), isClosing(closing) {}
+	};
+
+	std::vector<StackEntry>	stack;
+public:
+	DepthFirstNodeIterator(dom::Node * root);
+
+	virtual bool			hasNext(void);
+	virtual dom::TraversalStep	next(void);
 };
 
 class CompositeNode_Impl : public virtual Node_Impl
