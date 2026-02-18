@@ -129,11 +129,6 @@ bool			Node_Impl::hasChildNodes(void)
 	return false;
 }
 
-const std::string &	Node_Impl::getLocalName(void)
-{
-	return name;
-}
-
 void Node_Impl::setParent(dom::Node * parent)
 {
 	this->parent	= parent;
@@ -260,36 +255,6 @@ const std::string &	Node_Impl::getLocalName(void)
 dom::NodeIterator *	Node_Impl::createIterator(void)
 {
 	return new DepthFirstNodeIterator(this);
-}
-
-void Node_Impl::setParent(dom::Node * parent)
-{
-	this->parent	= parent;
-}
-
-dom::Node *		Node_Impl::getSibling(int direction)
-{
-	if (parent == 0)
-		return 0;
-
-	dom::NodeList::iterator	i	= parent->getChildNodes()->find(this);
-
-	if (direction < 0)
-	{
-		if (i == parent->getChildNodes()->begin())
-			return 0;
-		else
-			return *(--i);
-	}
-	else
-	{
-		i++;
-
-		if (i == parent->getChildNodes()->end())
-			return 0;
-		else
-			return *i;
-	}
 }
 
 DepthFirstNodeIterator::DepthFirstNodeIterator(dom::Node * root)
