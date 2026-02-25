@@ -5,11 +5,31 @@
 #include "Attr.H"
 #include "Text.H"
 
+void Base::serializeDocumentNode()
+{
+
+}
+
+void Base::onDocumentStart() {} // defined later
+
+bool Base::isDocument(dom::Node * node)
+{
+	return (dynamic_cast<dom::Document *>(node) != 0);
+}
+
+
+void XMLSerializer::onDocumentStart()
+{
+	
+}
+
+
 void XMLSerializer::prettyIndentation()
 {
 	for (int i = 0; i < indentationLevel; i++)
 		file << "\t";
 }
+
 
 void XMLSerializer::serializePretty(dom::Node * node)
 {

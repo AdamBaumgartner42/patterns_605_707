@@ -4,7 +4,20 @@
 
 #include "Node.H"
 
-class XMLSerializer
+class Base
+{
+public:
+	void serializeDocumentNode();
+
+protected:
+	virtual void onDocumentStart();
+
+private:
+	bool isDocument();
+
+};
+
+class XMLSerializer : public Base
 {
 private:
 	std::fstream		file;
