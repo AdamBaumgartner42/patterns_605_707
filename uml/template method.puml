@@ -1,0 +1,27 @@
+@startuml
+abstract class Base {
+    +serializeDocumentNode() : void
+    {abstract} #onDocumentStart() : void
+    {abstract} #onDocumentRecurse(node : Node *) : void
+    -isDocument() : bool
+}
+
+class Pretty {
+    #onDocumentStart() : void
+    #onDocumentRecurse(node : Node *) : void
+}
+
+class Minimal {
+    #onDocumentStart() : void
+    #onDocumentRecurse(node : Node *) : void
+}
+
+Base <|-- Minimal 
+Base <|-- Pretty
+
+note right of Base::serializeDocumentNode
+  <<Template Method>>
+  Defines algorithm skeleton.
+  Calls primitive operations.
+end note
+@enduml

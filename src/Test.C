@@ -133,11 +133,15 @@ void testSerializer(int argc, char** argv)
 	//
 	// Serialize
 	//
+	Minimal xmlSerializerMinimal(argv[2]);
+	xmlSerializerMinimal.serialize(document);
+	Pretty xmlSerializerPretty(argv[3]);
+	xmlSerializerPretty.serialize(document);
+
 	XMLSerializer	xmlSerializer(argv[2]);
 	xmlSerializer.serializePretty(document);
 	XMLSerializer	xmlSerializer2(argv[3]);
 	xmlSerializer2.serializeMinimal(document);
-
 	// delete Document and tree.
 }
 
