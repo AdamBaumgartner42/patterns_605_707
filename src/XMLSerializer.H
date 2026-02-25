@@ -17,7 +17,6 @@ protected:
 public:
 	// This is the template
 	void serializeDocumentNode(dom::Node * node);
-
 };
 
 class XMLSerializer
