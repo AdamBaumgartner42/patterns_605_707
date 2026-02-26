@@ -1,0 +1,66 @@
+@startuml
+class Director{
+    - builder : Builder
+    + Director(Builder *newBuilder)
+    + construct(string &filename) : dom::Document
+}
+
+abstract class Builder{
+    + {abstract} startDocument() : void
+    + {abstract} startElement(string &name) : void
+    + {abstract} addAttribute(string &name, string &value) : void
+    + {abstract} addText(string &text) : void
+    + {abstract} endElement(string &name) : void
+    + {abstract} getResult() : dom::Document *
+}
+
+class DOMDocumentBuilder{
+    - factory : DOMAbstractFactory*
+    - document : dom::Document*
+    - elementStack : std::vector<dom::Element *>
+    + DOMDocumentBuilder(DOMAbstractFactory *f)
+    + startDocument() : void
+    + startElement(string &name) : void
+    + addAttribute(string &name, string &value) : void
+    + addText(string &text) : void
+    + endElement(string &name) : void
+    + getResult() : dom::Document *
+}
+
+' --- Abstract Factory for DOM "family" ---
+abstract class DOMAbstractFactory{
+    + {abstract} createDocument() : dom::Document*
+    + {abstract} createElement(string &name) : dom::Element*
+    + {abstract} createText(string &text) : dom::Text*
+    + {abstract} createAttr(string &name, string &value) : dom::Attr*
+}
+
+class W3CDOMFactory{
+    + createDocument() : dom::Document*
+    + createElement(string &name) : dom::Element*
+    + createText(string &text) : dom::Text*
+    + createAttr(string &name, string &value) : dom::Attr*
+}
+
+class SimpleDOMFactory{
+    + createDocument() : dom::Document*
+    + createElement(string &name) : dom::Element*
+    + createText(string &text) : dom::Text*
+    + createAttr(string &name, string &value) : dom::Attr*
+}
+
+class Product
+note left of Product
+Document_Impl
+end note
+
+Director o- Builder : builder
+Director <.. XMLTokenizer
+Builder <|-- DOMDocumentBuilder
+
+DOMDocumentBuilder o- DOMAbstractFactory : factory
+DOMAbstractFactory <|-- W3CDOMFactory
+DOMAbstractFactory <|-- SimpleDOMFactory
+
+DOMDocumentBuilder -left-> Product : getResult()
+@enduml

@@ -1,0 +1,70 @@
+@startuml
+class Director{
+    - builder : Builder
+    + Director(Builder *newBuilder)
+    + construct(string &filename) : dom::Document
+
+}
+
+abstract class Builder{
+    +{abstract} startDocument() : void
+    +{abstract} startElement(string &name) : void
+    +{abstract} addAttribute(string &name, string &value) : void
+    +{abstract} addText(string &name) : void
+    +{abstract} endElement(string &name) : void
+    +{abstract} getResult() : dom::Document *
+
+
+}
+
+class ConcreteBuilder{
+    -document : dom::Document*
+    -elementStack : std::vector<dom::Element *>
+    +startDocument() : void
+    +startElement(string &name) : void
+    +addAttribute(string &name, string &value) : void
+    +addText(string &name) : void
+    +endElement(string &name) : void
+    +getResult() : dom::Document *
+
+}
+
+class Product
+
+Director o- Builder : builder
+Director <.. XMLTokenizer
+Builder <|-- ConcreteBuilder
+ConcreteBuilder -left-> Product : get result()
+
+note left of Product 
+Document_Impl
+end note
+
+@enduml
+
+
+' abstract class Base {
+'     +serializeDocumentNode() : void
+'     {abstract} #onDocumentStart() : void
+'     {abstract} #onDocumentRecurse(node : Node *) : void
+'     -isDocument() : bool
+' }
+
+' class Pretty {
+'     #onDocumentStart() : void
+'     #onDocumentRecurse(node : Node *) : void
+' }
+
+' class Minimal {
+'     #onDocumentStart() : void
+'     #onDocumentRecurse(node : Node *) : void
+' }
+
+' Base <|-- Minimal 
+' Base <|-- Pretty
+
+' note right of Base::serializeDocumentNode
+'   <<Template Method>>
+'   Defines algorithm skeleton.
+'   Calls primitive operations.
+' end note
