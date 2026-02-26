@@ -95,13 +95,11 @@ dom::Document * Director::construct(const std::string &filename)
             break;
         }
         case XMLTokenizer::XMLToken::ATTRIBUTE:
-            pendingAttribute = parseAttributeName(token->getToken());
-            break;
+            // ** Unfinished **
+
         case XMLTokenizer::XMLToken::ATTRIBUTE_VALUE:
-            if (pendingAttribute.size() > 0)
-                builder->addAttribute(pendingAttribute, parseAttributeValue(token->getToken()));
-            pendingAttribute.clear();
-            break;
+            // ** Unfinished **
+
         case XMLTokenizer::XMLToken::VALUE:
         {
             std::string text = token->getToken();
