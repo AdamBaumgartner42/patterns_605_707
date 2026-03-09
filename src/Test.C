@@ -276,7 +276,10 @@ void testIterator(int argc, char** argv)
 void testDirector(int argc, char** argv)
 {
 	std::shared_ptr<dom::Document>	document(new Document_Impl);
-	std::shared_ptr<Builder>	builder(new Builder(document));
+	//std::shared_ptr<Builder>	builder(new Builder(document));
+
+	std::shared_ptr<Builder> builder = Builder::getInstance(document);
+
 	Director	director(argv[2], builder);
 	std::fstream	file(argv[3], std::ios_base::out);
 	XMLSerializer	xmlSerializer(&file);

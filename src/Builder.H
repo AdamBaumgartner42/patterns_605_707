@@ -3,6 +3,7 @@
 
 #include <stack>
 #include <string>
+#include <memory>
 
 namespace dom
 {
@@ -18,10 +19,20 @@ private:
 	std::stack<std::shared_ptr<dom::Element>>	elementStack;
 	std::shared_ptr<dom::Element>			currentElement;
 	std::shared_ptr<dom::Attr>			currentAttr;
-
 	virtual const std::string	trim(const std::string & s) const;
-public:
+
+	static std:unique_ptr<Builder> instance;
+
 	Builder(std::shared_ptr<dom::Document> _factory) : factory(_factory), currentElement(0), currentAttr(0) {}
+
+
+public:
+
+	static Builder* getInstance(std::shared_ptr<dom::Document> _factory) {
+        if (!instance)
+            instance = new Builder(_factory);
+        return instance;
+    }
 
 	virtual std::shared_ptr<dom::Document>	getDocument(void)	{ return factory; }	// aka getResult
 
