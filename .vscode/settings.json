@@ -9,6 +9,8 @@
         "Element.C": "cpp",
         "Test.C": "cpp",
         "Text.C": "cpp",
-        "XMLTokenizer.C": "cpp"
-    }
+        "XMLTokenizer.C": "cpp",
+        "Builder.C": "cpp"
+    },
+    "cmake.sourceDirectory": "/home/adam/2026/patterns_605_707/src"
 }
