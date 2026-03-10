@@ -23,10 +23,10 @@ private:
 
 	static std::shared_ptr<Builder> instance;
 
+protected:
 	Builder(std::shared_ptr<dom::Document> _factory) : factory(_factory), currentElement(0), currentAttr(0) {}
 
 public:
-
 	static std::shared_ptr<Builder> getInstance(std::shared_ptr<dom::Document> _factory) {
         if (!instance)
             instance = std::shared_ptr<Builder>(new Builder(_factory));

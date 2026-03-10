@@ -7,6 +7,7 @@
 #include "Attr.H"
 #include "Text.H"
 
+// Declaration of static 
 std::shared_ptr<Builder> Builder::instance;
 
 void Builder::addValue(const std::string & text)

@@ -276,8 +276,8 @@ void testIterator(int argc, char** argv)
 void testDirector(int argc, char** argv)
 {
 	std::shared_ptr<dom::Document>	document(new Document_Impl);
-	//std::shared_ptr<Builder>	builder(new Builder(document));
 
+	// New Singleton 
 	std::shared_ptr<Builder> builder = Builder::getInstance(document);
 
 	Director	director(argv[2], builder);
