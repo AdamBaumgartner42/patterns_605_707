@@ -1,0 +1,25 @@
+@startuml
+
+class Document_Impl {
+}
+
+abstract class dom::Element{
+    +getElementsByTagName
+}
+
+class Element_Proxy{
+    +getElementsByTagName
+}
+
+class Element_Impl{
+    +getElementsByTagName
+}
+
+
+Document_Impl -> dom::Element
+dom::Element <|-- Element_Impl
+dom::Element <|-- Element_Proxy
+Element_Impl <- Element_Proxy : NodeList of Elements
+
+
+@enduml

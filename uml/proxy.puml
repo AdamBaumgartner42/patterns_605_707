@@ -1,0 +1,26 @@
+@startuml
+
+class Client {
+
+}
+
+abstract class Subject{
+
+}
+
+class Proxy{
+
+}
+
+class RealSubject{
+
+}
+
+
+Client -> Subject
+Subject <|-- RealSubject
+Subject <|-- Proxy
+RealSubject <- Proxy : get RealSubject's Info
+
+
+@enduml

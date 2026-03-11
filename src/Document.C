@@ -19,9 +19,10 @@ void Document_Impl::serialize(std::fstream * writer, std::shared_ptr<WhitespaceS
 	getDocumentElement()->serialize(writer, whitespace);
 }
 
+// Updated Document_Impl to create Element_Proxys instead of Element_Impl
 std::shared_ptr<dom::Element>	Document_Impl::createElement(const std::string & tagName)
 {
-	return std::shared_ptr<Element_Impl>(new Element_Impl(tagName, this));
+	return std::shared_ptr<Element_Impl>(new Element_Proxy(tagName, this));
 }
 
 std::shared_ptr<dom::Text>	Document_Impl::createTextNode(const std::string & data)
