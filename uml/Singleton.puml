@@ -1,12 +1,8 @@
 @startuml
 class Builder{ 
- + static getInstance(std::shared_ptr<dom::Document>) 
  - static std::shared_ptr<dom::Document> instance
- - node
+ # Builder(std::shared_ptr<dom::Document> _factory)
+ + static getInstance(std::shared_ptr<dom::Document>) 
 }
-
-note right of Builder
-    
-end note
 
 @enduml
