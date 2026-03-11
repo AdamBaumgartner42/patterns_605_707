@@ -76,7 +76,6 @@ class Element_Proxy : public virtual dom::Element, Node_Impl
 private:
 	NamedNodeMap_Impl	attributes;
 	Element_Impl *		realSubject;
-
 	Element_Impl * 		getRealSubject();
 protected:
 	Element_Proxy(const std::string & tagName, dom::Document * document);
