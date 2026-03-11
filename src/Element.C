@@ -196,6 +196,21 @@ Element_Proxy::~Element_Proxy()
 	}
 }
 
+Element_Impl* Element_Proxy::getRealSubject()
+{
+	if (realSubject == 0)
+	{
+		realSubject	= new Element_Impl(getTagName(), getOwnerDocument());
+
+		for (dom::NodeList::iterator i = getChildNodes()->begin(); i != getChildNodes()->end(); i++)
+		{
+			dynamic_cast<dom::Node *>(realSubject)->appendChild(*i);
+		}
+	}
+
+	return realSubject;
+}
+
 const std::string &	Element_Proxy::getAttribute(const std::string & name)
 {
 	for (dom::NodeList::iterator i = attributes.begin(); i != attributes.end(); i++)
