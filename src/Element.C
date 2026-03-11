@@ -182,6 +182,183 @@ void Element_Impl::serialize(std::fstream * writer, std::shared_ptr<WhitespaceSt
 	}
 }
 
+Element_Proxy::Element_Proxy(const std::string & tagName, dom::Document * document) : Node_Impl(tagName, dom::Node::ELEMENT_NODE),
+  attributes(document), realSubject(0)
+{
+	Node_Impl::document	= document;
+}
+
+Element_Proxy::~Element_Proxy()
+{
+	if (realSubject != 0)
+	{
+		delete realSubject;
+	}
+}
+
+const std::string &	Element_Proxy::getAttribute(const std::string & name)
+{
+	for (dom::NodeList::iterator i = attributes.begin(); i != attributes.end(); i++)
+	{
+		std::shared_ptr<dom::Attr> attr(std::dynamic_pointer_cast<dom::Attr>(*i));
+
+		if (attr->getName().compare(name) == 0)
+			return attr->getValue();
+	}
+
+	static const std::string	empty_string("");
+	return empty_string;
+}
+
+std::shared_ptr<dom::Attr>		Element_Proxy::getAttributeNode(const std::string & name)
+{
+	for (dom::NodeList::iterator i = attributes.begin(); i != attributes.end(); i++)
+	{
+		std::shared_ptr<dom::Attr> attr(std::dynamic_pointer_cast<dom::Attr>(*i));
+
+		if (attr->getName().compare(name) == 0)
+			return attr;
+	}
+
+	return 0;
+}
+
+std::shared_ptr<dom::NodeList>		Element_Proxy::getElementsByTagName(const std::string & tagName)
+{
+	return getRealSubject()->getElementsByTagName(tagName);
+}
+
+const std::string &	Element_Proxy::getTagName(void)
+{
+	return getNodeName();
+}
+
+bool			Element_Proxy::hasAttribute(const std::string & name)
+{
+	for (dom::NodeList::iterator i = attributes.begin(); i != attributes.end(); i++)
+	{
+		std::shared_ptr<dom::Attr> attr(dynamic_pointer_cast<dom::Attr>(*i));
+
+		if (attr->getName().compare(name) == 0)
+			return true;
+	}
+
+	return false;
+}
+
+void			Element_Proxy::removeAttribute(const std::string & name)
+{
+	for (dom::NodeList::iterator i = attributes.begin(); i != attributes.end(); i++)
+	{
+		std::shared_ptr<dom::Attr> attr(std::dynamic_pointer_cast<dom::Attr>(*i));
+
+		if (attr->getName().compare(name) == 0)
+		{
+			attributes.erase(i);
+			return;
+		}
+	}
+}
+
+std::shared_ptr<dom::Attr>		Element_Proxy::removeAttributeNode(std::shared_ptr<dom::Attr> oldAttr)
+{
+	for (dom::NodeList::iterator i = attributes.begin(); i != attributes.end(); i++)
+		if (*i == oldAttr)
+		{
+			std::shared_ptr<dom::Attr>	attribute(std::dynamic_pointer_cast<dom::Attr>(*i));
+			attributes.erase(i);
+			return attribute;
+		}
+
+	throw dom::DOMException(dom::DOMException::NOT_FOUND_ERR, "Attribute not found.");
+}
+
+void			Element_Proxy::setAttribute(const std::string & name, const std::string & value)
+{
+	for (dom::NodeList::iterator i = attributes.begin(); i != attributes.end(); i++)
+	{
+		std::shared_ptr<dom::Attr> attr(std::dynamic_pointer_cast<dom::Attr>(*i));
+
+		if (attr->getName().compare(name) == 0)
+		{
+			attr->setValue(value);
+			return;
+		}
+	}
+
+	std::shared_ptr<dom::Attr>
+	  attribute(new Attr_Impl(name, value, dynamic_cast<Document_Impl *>(getOwnerDocument())));
+
+	attributes.push_back(attribute);
+	std::dynamic_pointer_cast<Node_Impl>(std::dynamic_pointer_cast<Node>(attribute))->setParent(this);
+}
+
+std::shared_ptr<dom::Attr>		Element_Proxy::setAttributeNode(std::shared_ptr<dom::Attr> newAttr)
+{
+	if (newAttr->getOwnerDocument() != getOwnerDocument())
+		throw dom::DOMException(dom::DOMException::WRONG_DOCUMENT_ERR, "Attribute not created by this document.");
+
+	if (newAttr->getParentNode() != 0)
+		throw dom::DOMException(dom::DOMException::INUSE_ATTRIBUTE_ERR, "Attribute in use by other element.");
+
+	std::shared_ptr<dom::Attr>	oldAttribute;
+
+	for (dom::NodeList::iterator i = attributes.begin(); i != attributes.end(); i++)
+		if (std::dynamic_pointer_cast<dom::Attr>(*i)->getName().compare(newAttr->getName()) == 0)
+		{
+			oldAttribute	= std::dynamic_pointer_cast<dom::Attr>(*i);
+			attributes.erase(i);
+			break;
+		}
+
+	std::dynamic_pointer_cast<Node_Impl>(std::dynamic_pointer_cast<Node>(newAttr))->setParent(this);
+	attributes.push_back(newAttr);
+	return oldAttribute;
+}
+
+void Element_Proxy::serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
+{
+	whitespace->prettyIndentation(writer);
+	*writer << "<" << getTagName();
+
+	int	attrCount	= 0;
+
+	for (dom::NamedNodeMap::iterator i = getAttributes()->begin(); i != getAttributes()->end(); i++)
+	{
+		(*i)->serialize(writer, whitespace);
+		attrCount++;
+	}
+
+	if (attrCount > 0)
+		*writer << " ";
+
+	if (getChildNodes()->size() == 0)
+	{
+		*writer << "/>";
+		whitespace->newLine(writer);
+	}
+	else
+	{
+		*writer << ">";
+		whitespace->newLine(writer);
+		whitespace->incrementIndentation();
+
+		for (dom::NodeList::iterator i = getChildNodes()->begin(); i != getChildNodes()->end(); i++)
+			if (dynamic_pointer_cast<dom::Element>(*i)  || dynamic_pointer_cast<dom::Text>(*i))
+				(*i)->serialize(writer, whitespace);
+
+		whitespace->decrementIndentation();
+		whitespace->prettyIndentation(writer);
+		*writer << "</" << getTagName() + ">";
+		whitespace->newLine(writer);
+	}
+}
+
+
+
+
+
+
 ElementValidator::ElementValidator(std::shared_ptr<dom::Element> _component, std::shared_ptr<XMLValidator> xmlValidator) :
   Node_Impl("", dom::Node::ELEMENT_NODE),
   component(_component)

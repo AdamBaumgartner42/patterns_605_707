@@ -47,8 +47,43 @@ protected:
 	Element_Impl(const std::string & tagName, dom::Document * document);
 public:
 	friend class Document_Impl;
+	friend class Element_Proxy;
 
 	virtual ~Element_Impl();
+
+	//
+	// Serialization Data Extraction Strategy
+	//
+	virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace);
+
+	virtual const std::string &		getAttribute(const std::string & name);
+	virtual std::shared_ptr<dom::Attr>	getAttributeNode(const std::string & name);
+	virtual std::shared_ptr<dom::NodeList>	getElementsByTagName(const std::string & tagName);
+	virtual const std::string &		getTagName(void);
+	virtual bool				hasAttribute(const std::string & name);
+	virtual void				removeAttribute(const std::string & name);
+	virtual std::shared_ptr<dom::Attr>	removeAttributeNode(std::shared_ptr<dom::Attr> oldAttr);
+	virtual void				setAttribute(const std::string & name, const std::string & value);
+	virtual std::shared_ptr<dom::Attr>	setAttributeNode(std::shared_ptr<dom::Attr> newAttr);
+
+	virtual dom::NamedNodeMap *		getAttributes(void)	{ return &attributes; }
+	virtual bool				hasAttributes(void)	{ return attributes.size() > 0; }
+};
+
+// This is Element_Impl, but with modifications to be able to pull the RealSubject data
+class Element_Proxy : public virtual dom::Element, Node_Impl
+{
+private:
+	NamedNodeMap_Impl	attributes;
+	Element_Impl *		realSubject;
+
+	Element_Impl * 		getRealSubject();
+protected:
+	Element_Proxy(const std::string & tagName, dom::Document * document);
+public:
+	friend class Document_Impl;
+
+	virtual ~Element_Proxy();
 
 	//
 	// Serialization Data Extraction Strategy
