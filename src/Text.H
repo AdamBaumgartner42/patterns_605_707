@@ -4,6 +4,7 @@
 #include <string>
 
 #include "Node.H"
+#include "Text_Actual.H"
 
 namespace dom
 {

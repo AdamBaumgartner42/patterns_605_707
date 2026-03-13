@@ -13,32 +13,32 @@ Text_Impl::~Text_Impl()
 
 const std::string &	Text_Impl::getName(void)
 {
-	return getNodeName();
+	return text_actual->getNodeName();
 }
 
 const std::string &	Text_Impl::getData(void)
 {
-	return getNodeValue();
+	return text_actual->getNodeValue();
 }
 
 const std::string &	Text_Impl::getValue(void)
 {
-	return getData();
+	return text_actual->getData();
 }
 
 void			Text_Impl::setData(const std::string & value)
 {
-	setNodeValue(value);
+	text_actual->setNodeValue(value);
 }
 
 void			Text_Impl::setValue(const std::string & value)
 {
-	setNodeValue(value);
+	text_actual->setNodeValue(value);
 }
 
 int			Text_Impl::getLength(void)
 {
-	return getValue().size();
+	return text_actual->getValue().size();
 }
 
 const std::string &	Text_Impl::substringData(int offset, int count)

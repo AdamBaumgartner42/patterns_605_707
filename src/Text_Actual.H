@@ -29,9 +29,5 @@ public:
 	virtual dom::Text *		splitText(int offset);
 };
 
-
-
-
-
 #endif // TEXT_ACTUAL
 
