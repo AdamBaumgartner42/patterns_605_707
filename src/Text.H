@@ -4,6 +4,7 @@
 #include <string>
 
 #include "Node.H"
+#include "Text_Actual.H"
 
 namespace dom
 {
@@ -31,6 +32,8 @@ namespace dom
 
 class Text_Impl : public virtual dom::Text, Node_Impl
 {
+private: 
+	Text_Actual * text_actual;
 protected:
 	Text_Impl(const std::string value, dom::Document * document);
 public:
