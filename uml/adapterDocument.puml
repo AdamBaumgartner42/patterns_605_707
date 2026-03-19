@@ -1,0 +1,39 @@
+@startuml
+
+class w3c_Universe {
+
+}
+
+class DOMDocument{
+    +createElement()
+    +createDocumentFragment()
+    +createTextNode()
+    +createComment()
+    +etc()
+}
+
+class DocumentAdapter_JHU_EP{
+    +createElement()
+    +createDocumentFragment()
+    +createTextNode()
+    +createComment()
+    +etc()
+}
+
+class Document_Impl{
+    +createElement()
+    +createTextNode()
+    +createAttribute()
+    +getDocumentElement()
+}
+
+
+w3c_Universe -> DOMDocument
+DOMDocument <|-- DocumentAdapter_JHU_EP
+Document_Impl --* DocumentAdapter_JHU_EP
+
+note right of DocumentAdapter_JHU_EP
+Delegates calls to Document_Impl
+end note
+
+@enduml

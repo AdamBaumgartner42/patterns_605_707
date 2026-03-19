@@ -9,13 +9,12 @@ class DOMNode{
     +getNodeValue()
     +setNodeValue()
     +etc()
-
 }
 
-class Adapter_JHU_EP{
-    +getNodeName() : Node_Impl->getNodeName()
-    +getNodeValue() : Node_Impl->getNodeValue()
-    +setNodeValue() : Node_Impl->setNodeName()
+class NodeAdapter_JHU_EP{
+    +getNodeName()
+    +getNodeValue()
+    +setNodeValue()
     +etc()
 }
 
@@ -29,8 +28,11 @@ class Node_Impl{
 
 
 w3c_Universe -> DOMNode
-DOMNode <|-- Adapter_JHU_EP
-Node_Impl <-- Adapter_JHU_EP
+DOMNode <|-- NodeAdapter_JHU_EP
+Node_Impl --* NodeAdapter_JHU_EP
 
+note right of NodeAdapter_JHU_EP
+Delegates calls to Node_Impl
+end note
 
 @enduml
