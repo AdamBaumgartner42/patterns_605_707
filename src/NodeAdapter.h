@@ -4,8 +4,9 @@
 #include "../xerces/xercesc/dom/DOMNode.hpp"
 #include "Node.H"
 #include <string>
-
-
+ 
+// TODO: 34
+// Done: 2
 
 class NodeAdapter_JHU_EP : public XERCES::DOMNode
 {
