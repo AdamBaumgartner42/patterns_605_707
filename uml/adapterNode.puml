@@ -1,0 +1,36 @@
+@startuml
+
+class w3c_Universe {
+
+}
+
+class DOMNode{
+    +getNodeName()
+    +getNodeValue()
+    +setNodeValue()
+    +etc()
+
+}
+
+class Adapter_JHU_EP{
+    +getNodeName() : Node_Impl->getNodeName()
+    +getNodeValue() : Node_Impl->getNodeValue()
+    +setNodeValue() : Node_Impl->setNodeName()
+    +etc()
+}
+
+class Node_Impl{
+    +getNodeName()
+    +getNodeValue()
+    +setNodeValue()
+    +etc()
+
+}
+
+
+w3c_Universe -> DOMNode
+DOMNode <|-- Adapter_JHU_EP
+Node_Impl <-- Adapter_JHU_EP
+
+
+@enduml
