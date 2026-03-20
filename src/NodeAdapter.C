@@ -16,6 +16,8 @@ XERCES::DOMNode* NodeAdapter_JHU_EP::create (Node_Impl* impl)
     return new NodeAdapter_JHU_EP(impl);
 }
 
+
+
 XERCES::DOMDocument* NodeAdapter_JHU_EP::createDocument (Document_Impl* impl)
 {
     if(impl == nullptr)
@@ -151,10 +153,20 @@ XERCES::DOMDocument* NodeAdapter_JHU_EP::getOwnerDocument() const
 
 XERCES::DOMNode* NodeAdapter_JHU_EP::insertBefore(XERCES::DOMNode* newChild, XERCES::DOMNode* refChild)
 {
-    // TODO
-    (void)newChild;
-    (void)refChild;
-    return nullptr;
+    // // TODO
+    // (void)newChild;
+    // (void)refChild;
+    // return nullptr;
+
+    dom::Node* newChild_og = newChild;
+    dom::Node* refChild_og = refChild;
+
+    dom::Node* replyChild_og = impl_JHU_EP->insertBefore(newChild_og, refChild_og);
+
+    Node_Impl* replyChild_og_impl = dynamic_cast<Node_Impl*>(replyChild);
+
+    return NodeAdapter_JHU_EP::create(replyChild_og_impl);
+
 }
 
 XERCES::DOMNode* NodeAdapter_JHU_EP::replaceChild(XERCES::DOMNode* newChild, XERCES::DOMNode* oldChild)

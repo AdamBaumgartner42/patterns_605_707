@@ -13,7 +13,6 @@ class NodeAdapter_JHU_EP : public XERCES::DOMNode
 {
 private:
     Node_Impl* impl_JHU_EP;
-
     mutable std::string stringBuffer;
 
 public:
