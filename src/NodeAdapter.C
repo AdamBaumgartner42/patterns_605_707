@@ -3,9 +3,8 @@
  */
 #include "NodeAdapter.H"
 
-// Static Methods
 // Create method for turning dom::Node* into XERCES::DOMNode*
-static XERCES::DOMNode* create (Node_Impl* impl)
+XERCES::DOMNode* NodeAdapter_JHU_EP::create (Node_Impl* impl)
 {
     // If impl is not valid, return 
     if(impl == nullptr)
@@ -15,6 +14,16 @@ static XERCES::DOMNode* create (Node_Impl* impl)
 
     // Otherwise return a pointer to a wrapped XERCES::DOMNode*
     return new NodeAdapter_JHU_EP(impl);
+}
+
+XERCES::DOMDocument* NodeAdapter_JHU_EP::createDocument (Document_Impl* impl)
+{
+    if(impl == nullptr)
+    {
+        return nullptr;
+    }
+
+    // return a DocumentAdapter
 }
 
 // Node Adapter
@@ -60,38 +69,55 @@ XERCES::DOMNode* NodeAdapter_JHU_EP::getParentNode() const
     // Pull the matching expression from Node_Impl
     dom::Node* parent = impl_JHU_EP->getParentNode();
 
+    // I don't like this, but I really want to create the 
     Node_Impl* parent_impl = dynamic_cast<Node_Impl*>(parent);
 
+    // I create a return a NodeAdapter_JHU_EP object, 
+    // which is inherits from DOMNOde.
     return NodeAdapter_JHU_EP::create(parent_impl);
 }
 
 XERCES::DOMNodeList* NodeAdapter_JHU_EP::getChildNodes() const
 {
+    // Oof, this one with the NodeList is confusing
     return nullptr;
 }
 
 XERCES::DOMNode* NodeAdapter_JHU_EP::getFirstChild() const
 {
-    return nullptr;
+    // Ok back to the syle same as getParentNode
+    dom::Node* firstChild = impl_JHU_EP->getFirstChild();
+    Node_Impl* firstChild_impl = dynamic_cast<Node_Impl*>(firstChild);
+    return NodeAdapter_JHU_EP::create(firstChild_impl);
 }
 
 XERCES::DOMNode* NodeAdapter_JHU_EP::getLastChild() const
 {
-    return nullptr;
+    // Using create style as in getParentNode
+    dom::Node* lastChild = impl_JHU_EP->getLastChild();
+    Node_Impl* lastChild_impl = dynamic_cast<Node_Impl*>(lastChild);
+    return NodeAdapter_JHU_EP::create(lastChild_impl);
 }
 
 XERCES::DOMNode* NodeAdapter_JHU_EP::getPreviousSibling() const
 {
-    return nullptr;
+    // Using create style as in getParentNode
+    dom::Node* prevSibling = impl_JHU_EP->getPreviousSibling();
+    Node_Impl* prevSibling_impl = dynamic_cast<Node_Impl*>(prevSibling);
+    return NodeAdapter_JHU_EP::create(prevSibling_impl);
 }
 
 XERCES::DOMNode* NodeAdapter_JHU_EP::getNextSibling() const
 {
-    return nullptr;
+    // Using create style as in getParentNode
+    dom::Node* getNextSibling = impl_JHU_EP->getNextSibling();
+    Node_Impl* prevSibling_impl = dynamic_cast<Node_Impl*>(getNextSibling);
+    return NodeAdapter_JHU_EP::create(prevSibling_impl);
 }
 
 XERCES::DOMNamedNodeMap* NodeAdapter_JHU_EP::getAttributes() const
 {
+    // No matching function in Node
     return nullptr;
 }
 

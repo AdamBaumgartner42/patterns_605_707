@@ -1,7 +1,7 @@
 #ifndef NODEADAPTER_H
 #define NODEADAPTER_H
 
-#include "../xerces/xercesc/dom/DOMNode.hpp"
+#include "../xerces/dom/DOMNode.hpp"
 #include "Node.H"
 #include <string>
 

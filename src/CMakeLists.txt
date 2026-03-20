@@ -26,4 +26,6 @@ target_sources(Patterns PUBLIC
 	XMLValidator.H
 	NodeAdapter.C
 	NodeAdapter.H
+	DocumentAdapter.C
+	DocumentAdapter.H
 	)
