@@ -40,6 +40,6 @@ XERCES::DOMAttr* DocumentAdapter_JHU_EP::createAttribute(const XERCES::XMLCh *na
 
 XERCES::DOMElement* DocumentAdapter_JHU_EP::getDocumentElement() const
 {
-    createdElement = doc_impl_JHU_EP->getDocumentElement();
+    dom::Element* createdElement = doc_impl_JHU_EP->getDocumentElement();
     return new ElementWrapper_JHU_EP(createdElement);
 }

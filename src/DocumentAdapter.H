@@ -12,8 +12,6 @@ class DocumentAdapter_JHU_EP : public XERCES::DOMDocument
 {
 private:
     Document_Impl* doc_impl_JHU_EP;
-
-
 public:
     DocumentAdapter_JHU_EP(Document_Impl* n);
 
@@ -22,7 +20,6 @@ public:
     XERCES::DOMAttr* createAttribute(const XERCES::XMLCh *name);
     XERCES::DOMElement* getDocumentElement() const;
 };
-
 
 class ElementWrapper_JHU_EP : public XERCES::DOMElement
 {
