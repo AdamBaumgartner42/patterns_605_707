@@ -12,11 +12,13 @@
 
 
 // Cpnstructors
+
+TextWrapper_JHU_EP::TextWrapper_JHU_EP(dom::Text* t) : text_JHU_EP (t) {}
+AttrWrapper_JHU_EP::AttrWrapper_JHU_EP(dom::Attr* a) : attr_JHU_EP (a) {}
+
+
 DocumentAdapter_JHU_EP::DocumentAdapter_JHU_EP(Document_Impl* n) : doc_impl_JHU_EP (n) {}
 ElementWrapper_JHU_EP::ElementWrapper_JHU_EP(dom::Element* e) : element_JHU_EP (e) {}
-TextWrapper_JHU_EP::TextWrapper_JHU_EP(dom::Text* t) : text_JHU_EP (t) {}
-AttrWrapper_JHU_EP::AttrWrapper_JHU_EP(dom::Attr* t) : attr_JHU_EP (t) {}
-
 XERCES::DOMElement* DocumentAdapter_JHU_EP::createElement(const XERCES::XMLCh *tagName)
 {
     // Pass the value to our composed class of Document_Impl 

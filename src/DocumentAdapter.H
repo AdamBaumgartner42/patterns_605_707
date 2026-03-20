@@ -26,7 +26,7 @@ class ElementWrapper_JHU_EP : public XERCES::DOMElement
 private:
     dom::Element* element_JHU_EP;
 public: 
-    ElementWrapper_JHU_EP(dom::Element* n);
+    ElementWrapper_JHU_EP(dom::Element* e);
 };
 
 class TextWrapper_JHU_EP : public XERCES::DOMText
@@ -34,7 +34,7 @@ class TextWrapper_JHU_EP : public XERCES::DOMText
 private:
     dom::Text* text_JHU_EP;
 public: 
-    TextWrapper_JHU_EP(dom::Text* n);
+    TextWrapper_JHU_EP(dom::Text* t);
 };
 
 class AttrWrapper_JHU_EP : public XERCES::DOMAttr
@@ -42,7 +42,7 @@ class AttrWrapper_JHU_EP : public XERCES::DOMAttr
 private:
     dom::Attr* attr_JHU_EP;
 public: 
-    AttrWrapper_JHU_EP(dom::Attr* n);
+    AttrWrapper_JHU_EP(dom::Attr* a);
 };
 
 
