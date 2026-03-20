@@ -149,8 +149,14 @@ XERCES::DOMNode* NodeAdapter_JHU_EP::removeChild(XERCES::DOMNode* oldChild)
 XERCES::DOMNode* NodeAdapter_JHU_EP::appendChild(XERCES::DOMNode* newChild)
 {
     // TODO
-    (void)newChild;
-    return nullptr;
+
+    // Change DOMNode* to dom::Node*
+
+
+    impl_JHU_EP->appendChild()
+
+
+
 }
 
 bool NodeAdapter_JHU_EP::hasChildNodes() const
@@ -161,8 +167,8 @@ bool NodeAdapter_JHU_EP::hasChildNodes() const
 
 void NodeAdapter_JHU_EP::setNodeValue(const XERCES::XMLCh* nodeValue)
 {
-    // TODO
-    (void)nodeValue;
+    // Send data from the Target to the Adaptee
+    impl_JHU_EP->setNodeValue(nodeValue);
 }
 
 const XERCES::XMLCh* NodeAdapter_JHU_EP::getLocalName() const
