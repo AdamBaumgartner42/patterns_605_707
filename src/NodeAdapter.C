@@ -153,7 +153,9 @@ XERCES::DOMNode* NodeAdapter_JHU_EP::appendChild(XERCES::DOMNode* newChild)
     // Change DOMNode* to dom::Node*
 
 
-    impl_JHU_EP->appendChild()
+    // impl_JHU_EP->appendChild();
+
+    return nullptr;
 
 
 
@@ -173,8 +175,11 @@ void NodeAdapter_JHU_EP::setNodeValue(const XERCES::XMLCh* nodeValue)
 
 const XERCES::XMLCh* NodeAdapter_JHU_EP::getLocalName() const
 {
-    // TODO
-    return nullptr;
+    // put impl_JHU_EP's output into the buffer
+    stringBuffer = impl_JHU_EP->getLocalName();
+
+    // Convert std::string to XMLch*, which is a char *
+    return (const XERCES::XMLCh*) stringBuffer.c_str();
 }
 
 XERCES::DOMNode* NodeAdapter_JHU_EP::cloneNode(bool deep) const
