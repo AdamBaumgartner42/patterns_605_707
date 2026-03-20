@@ -124,6 +124,7 @@ XERCES::DOMNamedNodeMap* NodeAdapter_JHU_EP::getAttributes() const
 XERCES::DOMDocument* NodeAdapter_JHU_EP::getOwnerDocument() const
 {
     //  We need a Document, but we only have a Node to work with
+    // TODO
     return nullptr;
 }
 
@@ -136,6 +137,7 @@ XERCES::DOMNode* NodeAdapter_JHU_EP::cloneNode(bool deep) const
 
 XERCES::DOMNode* NodeAdapter_JHU_EP::insertBefore(XERCES::DOMNode* newChild, XERCES::DOMNode* refChild)
 {
+    // TODO
     (void)newChild;
     (void)refChild;
     return nullptr;
@@ -143,6 +145,7 @@ XERCES::DOMNode* NodeAdapter_JHU_EP::insertBefore(XERCES::DOMNode* newChild, XER
 
 XERCES::DOMNode* NodeAdapter_JHU_EP::replaceChild(XERCES::DOMNode* newChild, XERCES::DOMNode* oldChild)
 {
+    // TODO
     (void)newChild;
     (void)oldChild;
     return nullptr;
@@ -150,34 +153,38 @@ XERCES::DOMNode* NodeAdapter_JHU_EP::replaceChild(XERCES::DOMNode* newChild, XER
 
 XERCES::DOMNode* NodeAdapter_JHU_EP::removeChild(XERCES::DOMNode* oldChild)
 {
+    // TODO
     (void)oldChild;
     return nullptr;
 }
 
 XERCES::DOMNode* NodeAdapter_JHU_EP::appendChild(XERCES::DOMNode* newChild)
 {
+    // TODO
     (void)newChild;
     return nullptr;
 }
 
 bool NodeAdapter_JHU_EP::hasChildNodes() const
 {
+    // TODO
     return false;
 }
 
 void NodeAdapter_JHU_EP::setNodeValue(const XERCES::XMLCh* nodeValue)
 {
+    // TODO
     (void)nodeValue;
 }
 
-// Level 2
-
 void NodeAdapter_JHU_EP::normalize()
 {
+    // NO MATCHING FUNCTION
 }
 
 bool NodeAdapter_JHU_EP::isSupported(const XERCES::XMLCh* feature, const XERCES::XMLCh* version) const
 {
+    // NO MATCHING FUNCTION
     (void)feature;
     (void)version;
     return false;
@@ -185,44 +192,50 @@ bool NodeAdapter_JHU_EP::isSupported(const XERCES::XMLCh* feature, const XERCES:
 
 const XERCES::XMLCh* NodeAdapter_JHU_EP::getNamespaceURI() const
 {
+    // NO MATCHING FUNCTION
     return nullptr;
 }
 
 const XERCES::XMLCh* NodeAdapter_JHU_EP::getPrefix() const
 {
+    // NO MATCHING FUNCTION
     return nullptr;
 }
 
 const XERCES::XMLCh* NodeAdapter_JHU_EP::getLocalName() const
 {
+    // TODO
     return nullptr;
 }
 
 void NodeAdapter_JHU_EP::setPrefix(const XERCES::XMLCh* prefix)
 {
+    // NO MATCHING FUNCTION
     (void)prefix;
 }
 
 bool NodeAdapter_JHU_EP::hasAttributes() const
 {
+    // NO MATCHING FUNCTION
     return false;
 }
 
-// Level 3
-
 bool NodeAdapter_JHU_EP::isSameNode(const XERCES::DOMNode* other) const
 {
+    // NO MATCHING FUNCTION
     return this == other;
 }
 
 bool NodeAdapter_JHU_EP::isEqualNode(const XERCES::DOMNode* arg) const
 {
+    // NO MATCHING FUNCTION
     (void)arg;
     return false;
 }
 
 void* NodeAdapter_JHU_EP::setUserData(const XERCES::XMLCh* key, void* data, XERCES::DOMUserDataHandler* handler)
 {
+    // NO MATCHING FUNCTION
     (void)key;
     (void)handler;
     return data;
@@ -230,51 +243,60 @@ void* NodeAdapter_JHU_EP::setUserData(const XERCES::XMLCh* key, void* data, XERC
 
 void* NodeAdapter_JHU_EP::getUserData(const XERCES::XMLCh* key) const
 {
+    // NO MATCHING FUNCTION
     (void)key;
     return nullptr;
 }
 
 const XERCES::XMLCh* NodeAdapter_JHU_EP::getBaseURI() const
 {
+    // NO MATCHING FUNCTION
     return nullptr;
 }
 
 short NodeAdapter_JHU_EP::compareDocumentPosition(const XERCES::DOMNode* other) const
 {
+    // NO MATCHING FUNCTION
     (void)other;
     return 0;
 }
 
 const XERCES::XMLCh* NodeAdapter_JHU_EP::getTextContent() const
 {
+    // NO MATCHING FUNCTION
     return nullptr;
 }
 
 void NodeAdapter_JHU_EP::setTextContent(const XERCES::XMLCh* textContent)
 {
+    // NO MATCHING FUNCTION
     (void)textContent;
 }
 
 const XERCES::XMLCh* NodeAdapter_JHU_EP::lookupPrefix(const XERCES::XMLCh* namespaceURI) const
 {
+    // NO MATCHING FUNCTION
     (void)namespaceURI;
     return nullptr;
 }
 
 bool NodeAdapter_JHU_EP::isDefaultNamespace(const XERCES::XMLCh* namespaceURI) const
 {
+    // NO MATCHING FUNCTION
     (void)namespaceURI;
     return false;
 }
 
 const XERCES::XMLCh* NodeAdapter_JHU_EP::lookupNamespaceURI(const XERCES::XMLCh* prefix) const
 {
+    // NO MATCHING FUNCTION
     (void)prefix;
     return nullptr;
 }
 
 void* NodeAdapter_JHU_EP::getFeature(const XERCES::XMLCh* feature, const XERCES::XMLCh* version) const
 {
+    // NO MATCHING FUNCTION
     (void)feature;
     (void)version;
     return nullptr;
@@ -284,5 +306,6 @@ void* NodeAdapter_JHU_EP::getFeature(const XERCES::XMLCh* feature, const XERCES:
 
 void NodeAdapter_JHU_EP::release()
 {
+    // NO MATCHING FUNCTION
     delete this;
 }
