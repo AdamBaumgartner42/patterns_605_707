@@ -3,10 +3,27 @@
 
 #include "../xerces/xercesc/dom/DOMNode.hpp"
 #include "Node.H"
+#include "NodeList.H"
 #include <string>
  
-// TODO: 34
-// Done: 2
+
+
+class ListAdapter_JHU_EP : public XERCES::DOMNodeList
+{
+private:
+    NodeList* impl_list;
+    
+
+public:
+    ListAdapter_JHU_EP(NodeList* list);
+
+    // I don't believe I have enough information. 
+    // I don't know what changes between dom::NodeList and XERCES::DOMNodeList
+
+    // This would work because when we make the new list that is a member of 
+    // ListAdapter_JHU_EP, it will be wrapped as a type XERCES::DOMNodeList.
+};
+
 
 
 class NodeAdapter_JHU_EP : public XERCES::DOMNode
@@ -18,14 +35,18 @@ private:
 public:
     NodeAdapter_JHU_EP(Node_Impl* n);
 
-    const XMLCh* getNodeName() const override;      // done
-    const XMLCh* getNodeValue() const override;     // done
+    const XMLCh* getNodeName() const override;
+
+    const XMLCh* getNodeValue() const override;
+
+    const XMLCh* getLocalName() const override;
+
     XERCES::DOMNode::NodeType NodeAdapter_JHU_EP::getNodeType( 
-        const std::string & n) const override;      // not done
+        const std::string & n) const override;   
 
     DOMNode* getParentNode() const override;
 
-    DOMNode* getChildNodes() const override;
+    DOMNodeList getChildNodes() const override;
     
     DOMNode* getFirstChild() const override;
 
@@ -46,7 +67,7 @@ public:
 
     bool hasChildNodes() const override;
 
-    const XMLCh* getLocalName() const override;
-}
+    
+};
 
 #endif
