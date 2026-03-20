@@ -57,9 +57,12 @@ XERCES::DOMNode::NodeType NodeAdapter_JHU_EP::getNodeType() const
 
 XERCES::DOMNode* NodeAdapter_JHU_EP::getParentNode() const
 {
+    // Pull the matching expression from Node_Impl
     dom::Node* parent = impl_JHU_EP->getParentNode();
 
-    return NodeAdapter_JHU_EP::create(parent);
+    Node_Impl* parent_impl = dynamic_cast<Node_Impl*>(parent);
+
+    return NodeAdapter_JHU_EP::create(parent_impl);
 }
 
 XERCES::DOMNodeList* NodeAdapter_JHU_EP::getChildNodes() const
