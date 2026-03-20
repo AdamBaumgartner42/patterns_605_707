@@ -3,6 +3,7 @@
 
 #include "DOMNode.hpp"
 #include "Node.H"
+#include "NodeList.H"
 #include "DOMDocument.hpp"
 #include "Document.H"
 #include <string>
@@ -12,6 +13,7 @@ class NodeAdapter_JHU_EP : public XERCES::DOMNode
 {
 private:
     Node_Impl* impl_JHU_EP;
+
     mutable std::string stringBuffer;
 
 public:

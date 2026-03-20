@@ -140,7 +140,12 @@ XERCES::DOMNodeList* NodeAdapter_JHU_EP::getChildNodes() const
 
 XERCES::DOMDocument* NodeAdapter_JHU_EP::getOwnerDocument() const
 {
-    // TODO
+    dom::Document* owner = impl_JHU_EP->getOwnerDocument();
+    Document_Impl* owner_impl = dynamic_cast<Document_Impl*>(owner);
+
+    // Need a class that inherits from from DOMDocument to allow 
+    // conversion from Document_Impl* to DOMDocument*
+
     return nullptr;
 }
 
