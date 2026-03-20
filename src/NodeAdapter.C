@@ -23,7 +23,8 @@ XERCES::DOMDocument* NodeAdapter_JHU_EP::createDocument (Document_Impl* impl)
         return nullptr;
     }
 
-    return 0;
+    // Currently not implemented
+    return nullptr;
 }
 
 // Node Adapter
@@ -115,23 +116,10 @@ XERCES::DOMNode* NodeAdapter_JHU_EP::getNextSibling() const
     return NodeAdapter_JHU_EP::create(prevSibling_impl);
 }
 
-XERCES::DOMNamedNodeMap* NodeAdapter_JHU_EP::getAttributes() const
-{
-    // NO MATCHING FUNCTION
-    return nullptr;
-}
-
 XERCES::DOMDocument* NodeAdapter_JHU_EP::getOwnerDocument() const
 {
     //  We need a Document, but we only have a Node to work with
     // TODO
-    return nullptr;
-}
-
-XERCES::DOMNode* NodeAdapter_JHU_EP::cloneNode(bool deep) const
-{
-    // NO MATCHING FUNCTION
-    (void)deep;
     return nullptr;
 }
 
@@ -167,8 +155,8 @@ XERCES::DOMNode* NodeAdapter_JHU_EP::appendChild(XERCES::DOMNode* newChild)
 
 bool NodeAdapter_JHU_EP::hasChildNodes() const
 {
-    // TODO
-    return false;
+    // Adapter should directly return the result to the caller
+    return impl_JHU_EP->hasChildNodes();
 }
 
 void NodeAdapter_JHU_EP::setNodeValue(const XERCES::XMLCh* nodeValue)
@@ -177,9 +165,28 @@ void NodeAdapter_JHU_EP::setNodeValue(const XERCES::XMLCh* nodeValue)
     (void)nodeValue;
 }
 
+const XERCES::XMLCh* NodeAdapter_JHU_EP::getLocalName() const
+{
+    // TODO
+    return nullptr;
+}
+
+XERCES::DOMNode* NodeAdapter_JHU_EP::cloneNode(bool deep) const
+{
+    // NO MATCHING FUNCTION
+    (void)deep;
+    return nullptr;
+}
+
 void NodeAdapter_JHU_EP::normalize()
 {
     // NO MATCHING FUNCTION
+}
+
+XERCES::DOMNamedNodeMap* NodeAdapter_JHU_EP::getAttributes() const
+{
+    // NO MATCHING FUNCTION
+    return nullptr;
 }
 
 bool NodeAdapter_JHU_EP::isSupported(const XERCES::XMLCh* feature, const XERCES::XMLCh* version) const
@@ -199,12 +206,6 @@ const XERCES::XMLCh* NodeAdapter_JHU_EP::getNamespaceURI() const
 const XERCES::XMLCh* NodeAdapter_JHU_EP::getPrefix() const
 {
     // NO MATCHING FUNCTION
-    return nullptr;
-}
-
-const XERCES::XMLCh* NodeAdapter_JHU_EP::getLocalName() const
-{
-    // TODO
     return nullptr;
 }
 
@@ -301,8 +302,6 @@ void* NodeAdapter_JHU_EP::getFeature(const XERCES::XMLCh* feature, const XERCES:
     (void)version;
     return nullptr;
 }
-
-// Non-standard
 
 void NodeAdapter_JHU_EP::release()
 {
