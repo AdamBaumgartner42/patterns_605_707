@@ -78,13 +78,6 @@ XERCES::DOMNode* NodeAdapter_JHU_EP::getParentNode() const
     return NodeAdapter_JHU_EP::create(parent_impl);
 }
 
-XERCES::DOMNodeList* NodeAdapter_JHU_EP::getChildNodes() const
-{
-    // Oof, this one with the NodeList is confusing
-    // TODO
-    return nullptr;
-}
-
 XERCES::DOMNode* NodeAdapter_JHU_EP::getFirstChild() const
 {
     // Ok back to the syle same as getParentNode
@@ -117,9 +110,36 @@ XERCES::DOMNode* NodeAdapter_JHU_EP::getNextSibling() const
     return NodeAdapter_JHU_EP::create(prevSibling_impl);
 }
 
+bool NodeAdapter_JHU_EP::hasChildNodes() const
+{
+    // Adapter should directly return the result to the caller
+    return impl_JHU_EP->hasChildNodes();
+}
+
+const XERCES::XMLCh* NodeAdapter_JHU_EP::getLocalName() const
+{
+    // put impl_JHU_EP's output into the buffer
+    stringBuffer = impl_JHU_EP->getLocalName();
+
+    // Convert std::string to XMLch*, which is a char *
+    return (const XERCES::XMLCh*) stringBuffer.c_str();
+}
+
+void NodeAdapter_JHU_EP::setNodeValue(const XERCES::XMLCh* nodeValue)
+{
+    // Send data from the Target to the Adaptee
+    impl_JHU_EP->setNodeValue(nodeValue);
+}
+
+XERCES::DOMNodeList* NodeAdapter_JHU_EP::getChildNodes() const
+{
+    // Oof, this one with the NodeList is confusing
+    // TODO
+    return nullptr;
+}
+
 XERCES::DOMDocument* NodeAdapter_JHU_EP::getOwnerDocument() const
 {
-    //  We need a Document, but we only have a Node to work with
     // TODO
     return nullptr;
 }
@@ -150,38 +170,9 @@ XERCES::DOMNode* NodeAdapter_JHU_EP::removeChild(XERCES::DOMNode* oldChild)
 XERCES::DOMNode* NodeAdapter_JHU_EP::appendChild(XERCES::DOMNode* newChild)
 {
     // TODO
-
-    // Change DOMNode* to dom::Node*
-
-
-    // impl_JHU_EP->appendChild();
-
     return nullptr;
-
-
-
 }
 
-bool NodeAdapter_JHU_EP::hasChildNodes() const
-{
-    // Adapter should directly return the result to the caller
-    return impl_JHU_EP->hasChildNodes();
-}
-
-void NodeAdapter_JHU_EP::setNodeValue(const XERCES::XMLCh* nodeValue)
-{
-    // Send data from the Target to the Adaptee
-    impl_JHU_EP->setNodeValue(nodeValue);
-}
-
-const XERCES::XMLCh* NodeAdapter_JHU_EP::getLocalName() const
-{
-    // put impl_JHU_EP's output into the buffer
-    stringBuffer = impl_JHU_EP->getLocalName();
-
-    // Convert std::string to XMLch*, which is a char *
-    return (const XERCES::XMLCh*) stringBuffer.c_str();
-}
 
 XERCES::DOMNode* NodeAdapter_JHU_EP::cloneNode(bool deep) const
 {
