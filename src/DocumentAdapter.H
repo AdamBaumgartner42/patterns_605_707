@@ -12,6 +12,13 @@ private:
 
 public:
     DocumentAdapter_JHU_EP(Document_Impl* n);
+
+    DOMElement* createElement(const XMLCh *tagName);
+    DOMText* createTextNode(const XMLCh *data);
+    DOMAttr* createAttribute(const XMLCh *name);
+    DOMElement* getDocumentElement() const;
+
+
 };
 
 

@@ -18,11 +18,8 @@ private:
 public:
     NodeAdapter_JHU_EP(Node_Impl* n);
     static XERCES::DOMNode* create(Node_Impl* impl);
-    static XERCES::DOMDocument* createDocument (Document_Impl* impl);
 
     const XERCES::XMLCh* getNodeName() const override;
-
-     // Level 1
     const XERCES::XMLCh* getNodeValue() const override;
     NodeType getNodeType() const override;
     XERCES::DOMNode* getParentNode() const override;
@@ -40,8 +37,6 @@ public:
     XERCES::DOMNode* appendChild(XERCES::DOMNode* newChild) override;
     bool hasChildNodes() const override;
     void setNodeValue(const XERCES::XMLCh* nodeValue) override;
-
-    // Level 2
     void normalize() override;
     bool isSupported(const XERCES::XMLCh* feature, const XERCES::XMLCh* version) const override;
     const XERCES::XMLCh* getNamespaceURI() const override;
@@ -49,8 +44,6 @@ public:
     const XERCES::XMLCh* getLocalName() const override;
     void setPrefix(const XERCES::XMLCh* prefix) override;
     bool hasAttributes() const override;
-
-    // Level 3
     bool isSameNode(const XERCES::DOMNode* other) const override;
     bool isEqualNode(const XERCES::DOMNode* arg) const override;
     void* setUserData(const XERCES::XMLCh* key, void* data, XERCES::DOMUserDataHandler* handler) override;
@@ -63,8 +56,6 @@ public:
     bool isDefaultNamespace(const XERCES::XMLCh* namespaceURI) const override;
     const XERCES::XMLCh* lookupNamespaceURI(const XERCES::XMLCh* prefix) const override;
     void* getFeature(const XERCES::XMLCh* feature, const XERCES::XMLCh* version) const override;
-
-    // Non-standard
     void release() override;
 
 };
