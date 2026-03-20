@@ -70,7 +70,7 @@ XERCES::DOMNode* NodeAdapter_JHU_EP::getParentNode() const
     // Pull the matching expression from Node_Impl
     dom::Node* parent = impl_JHU_EP->getParentNode();
 
-    // I don't like this, but I really want to create the 
+    // I don't like this, but I really want to create the DOMNode object 
     Node_Impl* parent_impl = dynamic_cast<Node_Impl*>(parent);
 
     // I create a return a NodeAdapter_JHU_EP object, 
@@ -81,6 +81,7 @@ XERCES::DOMNode* NodeAdapter_JHU_EP::getParentNode() const
 XERCES::DOMNodeList* NodeAdapter_JHU_EP::getChildNodes() const
 {
     // Oof, this one with the NodeList is confusing
+    // TODO
     return nullptr;
 }
 
