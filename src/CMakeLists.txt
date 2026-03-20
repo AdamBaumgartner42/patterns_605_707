@@ -28,4 +28,6 @@ target_sources(Patterns PUBLIC
 	NodeAdapter.H
 	DocumentAdapter.C
 	DocumentAdapter.H
+	DOMDocument.hpp
+	DOMNode.hpp
 	)

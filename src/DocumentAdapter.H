@@ -1,7 +1,7 @@
 #ifndef DOCUMENTADAPTER_H
 #define DOCUMENTADAPTER_H
 
-#include "../xercesc/dom/DOMDocument.hpp"
+#include "DOMDocument.hpp"
 #include "Document.H"
 #include <string>
 
@@ -12,7 +12,7 @@ private:
 
 public:
     DocumentAdapter_JHU_EP(Document_Impl* n);
-}
+};
 
 
 

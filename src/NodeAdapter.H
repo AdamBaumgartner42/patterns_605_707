@@ -1,9 +1,9 @@
 #ifndef NODEADAPTER_H
 #define NODEADAPTER_H
 
-#include "../xercesc/dom/DOMNode.hpp"
+#include "DOMNode.hpp"
 #include "Node.H"
-#include "../xercesc/dom/DOMDocument.hpp"
+#include "DOMDocument.hpp"
 #include "Document.H"
 #include <string>
 
