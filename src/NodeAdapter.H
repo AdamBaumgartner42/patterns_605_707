@@ -1,8 +1,10 @@
 #ifndef NODEADAPTER_H
 #define NODEADAPTER_H
 
-#include "../xerces/dom/DOMNode.hpp"
+#include "../xercesc/dom/DOMNode.hpp"
 #include "Node.H"
+#include "../xercesc/dom/DOMDocument.hpp"
+#include "Document.H"
 #include <string>
 
 
@@ -15,6 +17,7 @@ private:
 public:
     NodeAdapter_JHU_EP(Node_Impl* n);
     static XERCES::DOMNode* create(Node_Impl* impl);
+    static XERCES::DOMDocument* createDocument (Document_Impl* impl);
 
     const XERCES::XMLCh* getNodeName() const override;
 

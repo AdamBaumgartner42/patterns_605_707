@@ -1,7 +1,7 @@
 #ifndef DOCUMENTADAPTER_H
 #define DOCUMENTADAPTER_H
 
-#include "../xerces/dom/DOMNode.hpp"
+#include "../xercesc/dom/DOMDocument.hpp"
 #include "Document.H"
 #include <string>
 
