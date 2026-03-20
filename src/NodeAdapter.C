@@ -23,7 +23,7 @@ XERCES::DOMDocument* NodeAdapter_JHU_EP::createDocument (Document_Impl* impl)
         return nullptr;
     }
 
-    // return a DocumentAdapter
+    return 0;
 }
 
 // Node Adapter
@@ -117,17 +117,19 @@ XERCES::DOMNode* NodeAdapter_JHU_EP::getNextSibling() const
 
 XERCES::DOMNamedNodeMap* NodeAdapter_JHU_EP::getAttributes() const
 {
-    // No matching function in Node
+    // NO MATCHING FUNCTION
     return nullptr;
 }
 
 XERCES::DOMDocument* NodeAdapter_JHU_EP::getOwnerDocument() const
 {
+    //  We need a Document, but we only have a Node to work with
     return nullptr;
 }
 
 XERCES::DOMNode* NodeAdapter_JHU_EP::cloneNode(bool deep) const
 {
+    // NO MATCHING FUNCTION
     (void)deep;
     return nullptr;
 }
