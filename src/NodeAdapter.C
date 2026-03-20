@@ -57,7 +57,9 @@ XERCES::DOMNode::NodeType NodeAdapter_JHU_EP::getNodeType() const
 
 XERCES::DOMNode* NodeAdapter_JHU_EP::getParentNode() const
 {
-    return nullptr;
+    dom::Node* parent = impl_JHU_EP->getParentNode();
+
+    return NodeAdapter_JHU_EP::create(parent);
 }
 
 XERCES::DOMNodeList* NodeAdapter_JHU_EP::getChildNodes() const

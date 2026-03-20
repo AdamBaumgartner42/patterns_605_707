@@ -14,6 +14,7 @@ private:
 
 public:
     NodeAdapter_JHU_EP(Node_Impl* n);
+    static XERCES::DOMNode* create(Node_Impl* impl);
 
     const XERCES::XMLCh* getNodeName() const override;
 
