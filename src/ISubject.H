@@ -1,7 +1,7 @@
 #ifndef ISUBJECT_H
 #define ISUBJECT_H
 
-#include "IObserver.h"
+#include "IObserver.H"
 
 class ISubject {
 	virtual void Attach(IObserver *observer) = 0;

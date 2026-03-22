@@ -6,7 +6,7 @@
 #include <string>
 #include <list>
 
-#include "ISubject.h"
+#include "ISubject.H"
 
 namespace dom
 {
