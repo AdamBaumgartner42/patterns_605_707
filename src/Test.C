@@ -11,6 +11,7 @@
 #include "Builder.H"
 #include "Director.H"
 #include "Observer.H"
+#include <iostream>
 
 void testTokenizer(int argc, char** argv);
 void testSerializer(int argc, char** argv);
@@ -30,6 +31,7 @@ void printUsage(void)
 
 int main(int argc, char** argv)
 {
+	
 	if (argc < 2)
 	{
 		printUsage();
@@ -280,9 +282,10 @@ void testDirector(int argc, char** argv)
 	std::shared_ptr<Builder>	builder(new Builder(document));
 	Observer *observer1 = new Observer(*builder);
 	Director	director(argv[2], builder);
+	std::cout << "Hi Mom \n";
 	builder->CreateMessage("Finished building document tree");
 	std::fstream	file(argv[3], std::ios_base::out);
 	XMLSerializer	xmlSerializer(&file);
-	//xmlSerializer.serializePretty(document);
+	xmlSerializer.serializePretty(document);
 	delete observer1;
 }

@@ -21,11 +21,11 @@ void Observer::Update(const std::string &message_from_subject)
     PrintInfo();
 }
 
-void RemoveMeFromTheList() {
+void Observer::RemoveMeFromTheList() {
     subject_.Detach(this);
     std::cout << "Observer \"" << number_ << "\" removed from the list.\n";
 }
 
-void PrintInfo() {
+void Observer::PrintInfo() {
     std::cout << "Observer \"" << this->number_ << "\": a new message is available --> " << this->message_from_subject_ << "\n";
 }
