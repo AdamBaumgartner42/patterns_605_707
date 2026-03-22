@@ -280,9 +280,8 @@ void testDirector(int argc, char** argv)
 {
 	std::shared_ptr<dom::Document>	document(new Document_Impl);
 	std::shared_ptr<Builder>	builder(new Builder(document));
-	Observer *observer1 = new Observer(*builder);
+	Observer *observer1 = new Observer(*builder); // Adding new observer
 	Director	director(argv[2], builder);
-	std::cout << "Hi Mom \n";
 	builder->CreateMessage("Finished building document tree");
 	std::fstream	file(argv[3], std::ios_base::out);
 	XMLSerializer	xmlSerializer(&file);

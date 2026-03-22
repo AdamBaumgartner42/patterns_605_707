@@ -16,6 +16,7 @@ void Builder::Attach(IObserver *observer){
 void Builder::Detach(IObserver *observer){
 	list_observer_.remove(observer);
 }
+
 void Builder::Notify(){
 	std::list<IObserver *>::iterator iterator = list_observer_.begin();
 	HowManyObserver();
