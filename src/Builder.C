@@ -15,7 +15,7 @@ void Builder::Attach(IObserver *observer){
 void Builder::Detach(IObserver *observer){
 	list_observer_.remove(observer);
 }
-void Notify(){
+void Builder::Notify(){
 	std::list<IObserver *>::iterator iterator = list_observer_.begin();
 	HowManyObserver();
 	while (iterator != list_observer_.end()) {
@@ -24,7 +24,7 @@ void Notify(){
 	}
 }
 
-void Builder::CreateMessage(std::string message = "Empty") {
+void Builder::CreateMessage(std::string message) {
 	this->message_ = message;
 	Notify();
 }
