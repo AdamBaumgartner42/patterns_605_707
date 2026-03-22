@@ -1,6 +1,7 @@
 #ifndef BUILDER_H
 #define BUILDER_H
 
+#include <memory>
 #include <stack>
 #include <string>
 
