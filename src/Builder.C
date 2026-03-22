@@ -8,11 +8,11 @@
 #include "Text.H"
 
 
-void Attach(IObserver *observer){
+void Builder::Attach(IObserver *observer){
 	list_observer_.push_back(observer);
 }
 
-void Detach(IObserver *observer){
+void Builder::Detach(IObserver *observer){
 	list_observer_.remove(observer);
 }
 void Notify(){
@@ -22,6 +22,15 @@ void Notify(){
 		(*iterator)->Update(message_);
 		++iterator;
 	}
+}
+
+void Builder::CreateMessage(std::string message = "Empty") {
+	this->message_ = message;
+	Notify();
+}
+
+void Builder::HowManyObserver() {
+	std::cout << "There are " << list_observer_.size() << " observers in the list.\n";
 }
 
 void Builder::addValue(const std::string & text)
