@@ -7,6 +7,23 @@
 #include "Attr.H"
 #include "Text.H"
 
+
+void Attach(IObserver *observer){
+	list_observer_.push_back(observer);
+}
+
+void Detach(IObserver *observer){
+	list_observer_.remove(observer);
+}
+void Notify(){
+	std::list<IObserver *>::iterator iterator = list_observer_.begin();
+	HowManyObserver();
+	while (iterator != list_observer_.end()) {
+		(*iterator)->Update(message_);
+		++iterator;
+	}
+}
+
 void Builder::addValue(const std::string & text)
 {
 	elementStack.top()->appendChild(factory->createTextNode(trim(text)));

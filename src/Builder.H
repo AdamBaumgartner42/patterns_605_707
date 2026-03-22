@@ -4,6 +4,9 @@
 #include <memory>
 #include <stack>
 #include <string>
+#include <list>
+
+#include "ISubject.h"
 
 namespace dom
 {
@@ -12,13 +15,16 @@ namespace dom
 	class Attr;
 };
 
-class Builder
+class Builder : public ISubject
 {
 private:
 	std::shared_ptr<dom::Document>			factory;
 	std::stack<std::shared_ptr<dom::Element>>	elementStack;
 	std::shared_ptr<dom::Element>			currentElement;
 	std::shared_ptr<dom::Attr>			currentAttr;
+
+	std::list<IObserver *> list_observer_;
+  	std::string message_;
 
 	virtual const std::string	trim(const std::string & s) const;
 public:
@@ -36,6 +42,10 @@ public:
 	virtual bool		popElement(void);
 	virtual void		pushElement(void);
 	virtual void		valueAttribute(const std::string & value);
+
+	virtual void 		Attach(IObserver *observer) override;
+	virtual void 		Detach(IObserver *observer) override;
+	virtual void 		Notify() override;
 };
 
 #endif // BUILDER_H

@@ -31,4 +31,6 @@ target_sources(Patterns PUBLIC
 	ValidChildren.C
 	ValidChildren.H
 	WhitespaceStrategy.H
+	ISubject.h
+	IObserver.h
 	)
