@@ -16,7 +16,7 @@ namespace dom
 	class Attr;
 };
 
-class Builder : public ISubject
+class Builder : public ISubject, public BaseComponent
 {
 private:
 	std::shared_ptr<dom::Document>			factory;

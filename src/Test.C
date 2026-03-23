@@ -11,6 +11,7 @@
 #include "Builder.H"
 #include "Director.H"
 #include "Observer.H"
+#include "Mediator.H"
 #include <iostream>
 
 void testTokenizer(int argc, char** argv);
@@ -281,6 +282,9 @@ void testDirector(int argc, char** argv)
 	std::shared_ptr<dom::Document>	document(new Document_Impl);
 	std::shared_ptr<Builder>	builder(new Builder(document));
 	Observer *observer1 = new Observer(*builder); // Adding new observer
+
+	ConcreteMediator *test = new ConcreteMediator(builder, observer1);
+
 	Director	director(argv[2], builder);
 	builder->CreateMessage("Finished building document tree");
 	std::fstream	file(argv[3], std::ios_base::out);

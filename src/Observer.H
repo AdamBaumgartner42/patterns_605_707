@@ -5,10 +5,12 @@
 
 #include "IObserver.H"
 #include "ISubject.H"
+#include "Mediator.H"
 
 
 
-class Observer : public IObserver {
+class Observer : public IObserver, public BaseComponent
+{
 public:
     Observer(ISubject &subject);
     virtual ~Observer();

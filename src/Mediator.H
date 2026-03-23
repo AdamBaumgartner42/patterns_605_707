@@ -1,6 +1,9 @@
 #ifndef MEDIATOR_H
 #define MEDIATOR_H
 
+#include "Builder.H"
+#include "Observer.H"
+
 class BaseComponent;
 class Mediator {
  public:
@@ -9,15 +12,21 @@ class Mediator {
 
 
 class BaseComponent {
- protected:
-  Mediator *mediator_;
+protected:
+    Mediator *mediator_;
 
- public:
-  BaseComponent(Mediator *mediator = nullptr) : mediator_(mediator) {
-  }
-  void set_mediator(Mediator *mediator) {
-    this->mediator_ = mediator;
-  }
+public:
+    void set_mediator(Mediator *mediator);
+};
+
+
+class ConcreteMediator : public Mediator {
+private:
+    Builder *builder_;
+    Observer *observer_;
+
+public:
+    ConcreteMediator(Builder *c1, Observer *c2);
 };
 
 
