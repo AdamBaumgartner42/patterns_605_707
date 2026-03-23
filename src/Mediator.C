@@ -1,9 +1,12 @@
 
 #include "Mediator.H"
+#include "Builder.H"
+#include "Observer.H"
 
 void BaseComponent::set_mediator(Mediator *mediator) {
     this->mediator_ = mediator;
 }
+
 
 ConcreteMediator::ConcreteMediator(Builder *c1, Observer *c2) : builder_(c1), observer_(c2) {
     this->builder_->set_mediator(this);
