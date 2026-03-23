@@ -240,6 +240,7 @@ void testIterator(int argc, char** argv)
 	//   </element>
 	//   <element>
 	//   </element>
+
 	// </document>
 	//
 	std::shared_ptr<dom::Document>	document(new Document_Impl);
@@ -280,11 +281,14 @@ void testIterator(int argc, char** argv)
 void testDirector(int argc, char** argv)
 {
 	std::shared_ptr<dom::Document>	document(new Document_Impl);
-	
-	std::shared_ptr<Builder>	builder(new Builder(document));
-	Observer *observer1 = new Observer(*builder); // Adding new observer
 
-	ConcreteMediator *mediator = new ConcreteMediator(builder.get(), observer1);
+	ConcreteMediator *mediator = new ConcreteMediator();
+
+	std::shared_ptr<Builder>	builder(new Builder(document));
+	builder->addMediator(mediator);
+
+	Observer *observer1 = new Observer(); 
+	observer1->addMediator(mediator);
 
 	Director	director(argv[2], builder);
 	builder->CreateMessage("Finished building document tree");
