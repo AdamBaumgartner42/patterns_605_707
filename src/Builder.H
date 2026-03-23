@@ -7,6 +7,7 @@
 #include <list>
 
 #include "ISubject.H"
+#include "Mediator.H"
 
 namespace dom
 {
