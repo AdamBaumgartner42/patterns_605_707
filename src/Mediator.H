@@ -4,10 +4,11 @@
 #include "Builder.H"
 #include "Observer.H"
 
+class Builder;
+class Observer;
+
 class BaseComponent;
 class Mediator {
- public:
-  virtual void Notify(BaseComponent *sender, std::string event) const = 0;
 };
 
 
@@ -27,6 +28,7 @@ private:
 
 public:
     ConcreteMediator(Builder *c1, Observer *c2);
+
 };
 
 
