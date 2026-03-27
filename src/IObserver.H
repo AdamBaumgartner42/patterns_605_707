@@ -6,7 +6,7 @@
 class IObserver {
 public:
     virtual ~IObserver() = default;
-    virtual void Update(const std::string &message_from_subject) = 0;
+    virtual void Update(ISubject* subject, const std::string &message_from_subject) = 0;
 };
 
 #endif
