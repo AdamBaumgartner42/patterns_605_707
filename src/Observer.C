@@ -15,7 +15,7 @@ Observer::~Observer()
     std::cout << "Goodbye, I was the Observer \"" << this->number_ << "\".\n";
 }
 
-void Observer::Update(const std::string &message_from_subject)
+void Observer::Update(ISubject* subject, const std::string &message_from_subject)
 {
     message_from_subject_ = message_from_subject;
     PrintInfo();

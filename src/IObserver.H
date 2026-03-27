@@ -3,6 +3,8 @@
 
 #include <string>
 
+class ISubject; // dummy?
+
 class IObserver {
 public:
     virtual ~IObserver() = default;
