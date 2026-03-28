@@ -7,6 +7,12 @@
 #include "Attr.H"
 #include "Text.H"
 
+
+// Get Message
+std::string Builder::getMessage(void){
+	return message_;
+}
+
 // Concrete Subject method
 void Builder::Attach(IObserver *observer){
 	list_observer_.push_back(observer);
@@ -21,7 +27,7 @@ void Builder::Notify(){
 	std::list<IObserver *>::iterator iterator = list_observer_.begin();
 	HowManyObserver();
 	while (iterator != list_observer_.end()) {
-		(*iterator)->Update(this, message_);
+		(*iterator)->Update(this);
 		++iterator;
 	}
 }

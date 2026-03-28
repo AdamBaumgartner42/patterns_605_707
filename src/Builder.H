@@ -47,7 +47,11 @@ public:
 	virtual void 		Detach(IObserver *observer) override;
 	virtual void 		Notify() override;
 	virtual void 		CreateMessage(std::string message);
+	virtual std::string getMessage(void) override;
+	
 	virtual void 		HowManyObserver();
+
+
 };
 
 #endif // BUILDER_H

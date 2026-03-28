@@ -12,7 +12,7 @@ class Observer : public IObserver {
 public:
     Observer(ISubject &subject);
     virtual ~Observer();
-    void Update(ISubject* subject, const std::string &message_from_subject) override;
+    void Update(ISubject* subject) override;
     void RemoveMeFromTheList();
     void PrintInfo();
 

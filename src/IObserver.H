@@ -3,12 +3,12 @@
 
 #include <string>
 
-class ISubject; // dummy?
+class ISubject; // forward declaration
 
 class IObserver {
 public:
     virtual ~IObserver() = default;
-    virtual void Update(ISubject* subject, const std::string &message_from_subject) = 0;
+    virtual void Update(ISubject* subject) = 0;
 };
 
 #endif
