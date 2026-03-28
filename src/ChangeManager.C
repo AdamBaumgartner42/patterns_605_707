@@ -5,7 +5,7 @@
 // Reference
 // std::map<Subject*, std::list<Observer*>> subjectObserverMap;
 
-void ChangeManager::Register(Subject* subject, Observer* observer)
+void ChangeManager::Register(Subject* subject, IObserver* observer)
 {
     auto& observers = subjectObserverMap[subject];
 
@@ -17,7 +17,7 @@ void ChangeManager::Register(Subject* subject, Observer* observer)
     }
 }
 
-void ChangeManager::Unregister(Subject* subject, Observer* observer)
+void ChangeManager::Unregister(Subject* subject, IObserver* observer)
 {
     // Check that subject exists
     auto it = subjectObserverMap.find(subject);

@@ -3,6 +3,8 @@
 
 #include "IObserver.H"
 
+class Subject;
+
 class IChangeManager {
 public:
     virtual ~IChangeManager() = default;
