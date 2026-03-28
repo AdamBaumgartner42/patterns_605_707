@@ -281,11 +281,10 @@ void testDirector(int argc, char** argv)
 {
 	std::shared_ptr<dom::Document>	document(new Document_Impl);
 	std::shared_ptr<Builder>	builder(new Builder(document));
-
 	
 	std::shared_ptr<ChangeManager> chman(new ChangeManager);
+	builder->setChangeManager(chman.get());
 
-	builder->setChangeManager(chman);
 	Observer *observer1 = new Observer(*builder); // Adding new observer
 	Director	director(argv[2], builder);
 	builder->CreateMessage("Finished building document tree");

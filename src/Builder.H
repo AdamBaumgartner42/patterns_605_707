@@ -29,9 +29,10 @@ private:
 
 	virtual const std::string	trim(const std::string & s) const;
 public:
-	Builder(std::shared_ptr<dom::Document> _factory) : factory(_factory), currentElement(0), currentAttr(0) {}
+	Builder(std::shared_ptr<dom::Document> _factory) : factory(_factory), 
+		currentElement(0), currentAttr(0), chman_(0) {}
 
-	virtual std::shared_ptr<dom::Document>	getDocument(void)	{ return factory; }	// aka getResult
+	virtual std::shared_ptr<dom::Document>	getDocument(void)	{ return factory; }
 
 	virtual void		addValue(const std::string & text);
 	virtual void		confirmElement(const std::string & tag);

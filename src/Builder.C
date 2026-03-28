@@ -20,24 +20,38 @@ std::string Builder::getMessage(void){
 
 // Concrete Subject method
 void Builder::Attach(IObserver *observer){
-	// Original Implementation
-	// list_observer_.push_back(observer);
 
-	// ChangeManager Implementation
-	chman_->Register(this, observer);
+	if (chman_){
+		// ChangeManager Implementation
+		chman_->Register(this, observer);
+	} 
+	else {
+		// Original Implementation
+		list_observer_.push_back(observer);
+	}
 }
 
 // Concrete Subject method
 void Builder::Detach(IObserver *observer){
-	// Original Implementation
-	// list_observer_.remove(observer);
 
-	// ChangeManager Implementation
-	chman_->Unregister(this, observer);
+	if (chman_){
+		chman_->Unregister(this, observer);
+	} else {
+		list_observer_.remove(observer);
+	}
 }
 
 void Builder::Notify(){
-	chman_->Notify(this);
+	if (chman_){
+		chman_->Notify(this);
+	} else {
+		std::list<IObserver *>::iterator iterator = list_observer_.begin();
+		HowManyObserver();
+		while (iterator != list_observer_.end()) {
+			(*iterator)->Update(this);
+			++iterator;
+		}
+	}
 }
 
 // Concrete Subject method
