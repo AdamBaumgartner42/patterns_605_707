@@ -17,7 +17,7 @@ public:
 	virtual void Detach(IObserver *observer) = 0;
 	virtual void Notify() = 0;
 	virtual std::string getMessage(void) = 0;
-	virtual void setChangeManager(ChangeManager* chman);
+	virtual void setChangeManager(ChangeManager* chman) = 0;
 };
 
 #endif
