@@ -8,28 +8,36 @@
 #include "Text.H"
 
 
-// Get Message
+// Set ChangeManager
+void Builder::setChangeManager(ChangeManager* chman){
+	chman_ = chman;
+}
+
+// Get Message - used with ChangeManager
 std::string Builder::getMessage(void){
 	return message_;
 }
 
 // Concrete Subject method
 void Builder::Attach(IObserver *observer){
-	list_observer_.push_back(observer);
+	// Original Implementation
+	// list_observer_.push_back(observer);
+
+	// ChangeManager Implementation
+	chman_->Register(this, observer);
 }
 
 // Concrete Subject method
 void Builder::Detach(IObserver *observer){
-	list_observer_.remove(observer);
+	// Original Implementation
+	// list_observer_.remove(observer);
+
+	// ChangeManager Implementation
+	chman_->Unregister(this, observer);
 }
 
 void Builder::Notify(){
-	std::list<IObserver *>::iterator iterator = list_observer_.begin();
-	HowManyObserver();
-	while (iterator != list_observer_.end()) {
-		(*iterator)->Update(this);
-		++iterator;
-	}
+	chman_->Notify(this);
 }
 
 // Concrete Subject method
