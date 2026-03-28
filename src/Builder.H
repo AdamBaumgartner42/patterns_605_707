@@ -25,7 +25,7 @@ private:
 
 	std::list<IObserver *> list_observer_;
   	std::string message_;
-	ChangeManager* chman_;
+	IChangeManager* chman_;
 
 	virtual const std::string	trim(const std::string & s) const;
 public:
@@ -50,7 +50,7 @@ public:
 	virtual void 		Notify() override;
 	virtual void 		CreateMessage(std::string message);
 	virtual std::string getMessage(void) override;
-	virtual void 		setChangeManager(ChangeManager* chman);
+	virtual void 		setChangeManager(IChangeManager* chman);
 
 	virtual void 		HowManyObserver();
 

@@ -2,9 +2,9 @@
 
 
 abstract class ISubject{
-    - message_
-    - chman
-    +
+    + Attach(IObserver*)
+    + Detach(IObserver*)
+    + Notify()
 }
 
 abstract class IObserver{
@@ -18,28 +18,30 @@ abstract class IChangeManager{
 }
 
 
-
 class Builder {
-    - chman_
-    - message_
-
-    + Attach()
-    + Detach()
+    - ChangeManager* chman_
+    - std::string message_
+    + setChangeManager(ChangeManager*)
+    + Attach(IObserver*)
+    + Detach(IObserver*)
     + Notify()
+    + CreateMessage(std::string)
+    + getMessage()
 }
 
 class ChangeManager {
-    - std::map<ISubject*, std::list<IObserver*>>
+    - subjectObserverMap : std::map<ISubject*, std::list<IObserver*>>
     + Register(ISubject*, IObserver*)
     + Unregister(ISubject*, IObserver*)
     + Notify(ISubject*)
-    + CreateMessage(std::string)
-    + setChangeManager(ChangeManager*)
+
+
 }
 
 
 class Observer {
-    +Update()
+    - std::string subject_message
+    + Update(ISubject*)
 }
 
 
@@ -48,8 +50,9 @@ IObserver <|-- Observer
 IChangeManager <|-- ChangeManager
 
 
-Builder -> ChangeManager : chman
-ChangeManager -> Observer
+Builder -> IChangeManager : chman
+IChangeManager -> IObserver
+IChangeManager -->ISubject
 
 
 @enduml

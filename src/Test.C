@@ -282,7 +282,7 @@ void testDirector(int argc, char** argv)
 	std::shared_ptr<dom::Document>	document(new Document_Impl);
 	std::shared_ptr<Builder>	builder(new Builder(document));
 	
-	std::shared_ptr<ChangeManager> chman(new ChangeManager);
+	std::shared_ptr<IChangeManager> chman(new ChangeManager);
 	builder->setChangeManager(chman.get());
 
 	Observer *observer1 = new Observer(*builder); // Adding new observer

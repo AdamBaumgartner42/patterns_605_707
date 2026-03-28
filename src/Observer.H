@@ -17,7 +17,7 @@ public:
     void PrintInfo();
 
 private:
-    std::string message_from_subject_;
+    std::string subject_message_;
     ISubject &subject_;
     static int static_number_;
     int number_;

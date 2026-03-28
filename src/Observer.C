@@ -17,7 +17,7 @@ Observer::~Observer()
 
 void Observer::Update(ISubject* subject)
 {
-    message_from_subject_ = subject->getMessage();
+    subject_message_ = subject->getMessage();
     PrintInfo();
 }
 
@@ -27,5 +27,5 @@ void Observer::RemoveMeFromTheList() {
 }
 
 void Observer::PrintInfo() {
-    std::cout << "Observer \"" << this->number_ << "\": a new message is available --> " << this->message_from_subject_ << "\n";
+    std::cout << "Observer \"" << this->number_ << "\": a new message is available --> " << this->subject_message_ << "\n";
 }
