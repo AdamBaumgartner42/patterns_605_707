@@ -1,0 +1,55 @@
+@startuml
+
+
+abstract class ISubject{
+    - message_
+    - chman
+    +
+}
+
+abstract class IObserver{
+    + Update(ISubject*)
+}
+
+abstract class IChangeManager{
+    + Register(ISubject*, IObserver*)
+    + Unregister(ISubject*, IObserver*)
+    + Notify(ISubject*)
+}
+
+
+
+class Builder {
+    - chman_
+    - message_
+
+    + Attach()
+    + Detach()
+    + Notify()
+}
+
+class ChangeManager {
+    - std::map<ISubject*, std::list<IObserver*>>
+    + Register(ISubject*, IObserver*)
+    + Unregister(ISubject*, IObserver*)
+    + Notify(ISubject*)
+    + CreateMessage(std::string)
+    + setChangeManager(ChangeManager*)
+}
+
+
+class Observer {
+    +Update()
+}
+
+
+ISubject <|-- Builder
+IObserver <|-- Observer
+IChangeManager <|-- ChangeManager
+
+
+Builder -> ChangeManager : chman
+ChangeManager -> Observer
+
+
+@enduml

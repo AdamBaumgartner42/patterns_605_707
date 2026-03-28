@@ -9,7 +9,7 @@
 class ISubject {
 private:
 	std::string message_;
-	ChangeManager* chman;
+	ChangeManager* chman_;
 
 public:
 	virtual ~ISubject() = default;
