@@ -2,22 +2,18 @@
 #include <map>
 #include <list>
 
-// Reference
-// std::map<Subject*, std::list<Observer*>> subjectObserverMap;
-
-void ChangeManager::Register(Subject* subject, IObserver* observer)
+void ChangeManager::Register(ISubject* subject, IObserver* observer)
 {
     auto& observers = subjectObserverMap[subject];
 
-    // Only Add 
-    auto it = std::find(observers.begin(), observers.end(), observer) {
-        if (it == observers.end()) {
-            observers.push_back 
-        }
+    auto it = std::find(observers.begin(), observers.end(), observer);
+    if (it == observers.end()) {
+        observers.push_back(observer); 
     }
+    
 }
 
-void ChangeManager::Unregister(Subject* subject, IObserver* observer)
+void ChangeManager::Unregister(ISubject* subject, IObserver* observer)
 {
     // Check that subject exists
     auto it = subjectObserverMap.find(subject);
@@ -34,13 +30,13 @@ void ChangeManager::Unregister(Subject* subject, IObserver* observer)
     );
 }
 
-void ChangeManager::Notify(Subject* subject) override {
+void ChangeManager::Notify(ISubject* subject) {
     auto it = subjectObserverMap.find(subject);
     if (it == subjectObserverMap.end()){
         return;
     }
 
-    for (Observer* observer : it->second) {
+    for (IObserver* observer : it->second) {
         observer->Update(subject);
     }
 }

@@ -35,4 +35,6 @@ target_sources(Patterns PUBLIC
 	IObserver.H
 	Observer.C
 	Observer.H
+	ChangeManager.C
+	ChangeManager.H
 	)

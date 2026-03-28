@@ -9,12 +9,13 @@
 
 class ChangeManager : public IChangeManager {
 private: 
-    std::map<Subject*, std::list<IObserver*>> subjectObserverMap;
+    std::map<ISubject*, std::list<IObserver*>> subjectObserverMap;
 
 public:
-    void Register(ISubject* subject, IObserver* observer) override;
-    void Unregister(ISubject* subject, IObserver* observer) override;
-    void Notify(ISubject* subject) override;
+	ChangeManager() {}
+    virtual void Register(ISubject* subject, IObserver* observer) override;
+    virtual void Unregister(ISubject* subject, IObserver* observer) override;
+    virtual void Notify(ISubject* subject) override;
 };
 
 
