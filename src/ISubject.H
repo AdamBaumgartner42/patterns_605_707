@@ -7,10 +7,6 @@
 #include "ChangeManager.H"
 
 class ISubject {
-private:
-	std::string message_;
-	ChangeManager* chman_;
-
 public:
 	virtual ~ISubject() = default;
 	virtual void Attach(IObserver *observer) = 0;

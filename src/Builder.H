@@ -24,8 +24,8 @@ private:
 	std::shared_ptr<dom::Attr>			currentAttr;
 
 	std::list<IObserver *> list_observer_;
-  	// std::string message_;
-	// ChangeManager* chman_;
+  	std::string message_;
+	ChangeManager* chman_;
 
 	virtual const std::string	trim(const std::string & s) const;
 public:
