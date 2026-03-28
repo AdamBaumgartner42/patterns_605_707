@@ -19,9 +19,9 @@ abstract class IChangeManager{
 
 
 class Builder {
-    - ChangeManager* chman_
+    - IChangeManager* chman_
     - std::string message_
-    + setChangeManager(ChangeManager*)
+    + setChangeManager(IChangeManager*)
     + Attach(IObserver*)
     + Detach(IObserver*)
     + Notify()
@@ -51,8 +51,8 @@ IChangeManager <|-- ChangeManager
 
 
 Builder -> IChangeManager : chman
-IChangeManager -> IObserver
-IChangeManager -->ISubject
+ChangeManager -> IObserver
+ChangeManager --> ISubject
 
 
 @enduml

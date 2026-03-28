@@ -9,7 +9,7 @@
 
 
 // Set ChangeManager
-void Builder::setChangeManager(ChangeManager* chman){
+void Builder::setChangeManager(IChangeManager* chman){
 	chman_ = chman;
 }
 
