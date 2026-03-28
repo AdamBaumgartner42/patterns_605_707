@@ -3,7 +3,6 @@
 
 #include "IObserver.H"
 
-class Subject;
 
 class IChangeManager {
 public:
