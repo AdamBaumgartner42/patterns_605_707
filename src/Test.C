@@ -282,6 +282,7 @@ void testDirector(int argc, char** argv)
 	std::shared_ptr<dom::Document>	document(new Document_Impl);
 	std::shared_ptr<Builder>	builder(new Builder(document));
 	
+	// Add and Remove the ChangeManager (Part 1, Part 2)
 	std::shared_ptr<IChangeManager> chman(new ChangeManager);
 	builder->setChangeManager(chman.get());
 
