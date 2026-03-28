@@ -1,0 +1,41 @@
+@startuml
+
+abstract class ISubject{
+    +Attach()
+    +Detach()
+    +Notify()
+}
+
+abstract class IObserver{
+    +Update()
+}
+
+class Builder{
+    -message_
+    -list_Observer_
+    +Attach()
+    +Detach()
+    +Notify()
+    +CreateMessage()
+}
+
+class concrete_Observers{
+    -message_from_subject_
+    -subject
+    +Update()
+}
+
+
+ISubject -> IObserver : Observers
+ISubject <|-- Builder
+IObserver <|-- concrete_Observers
+
+Builder <- concrete_Observers : Subject
+
+note left of Builder : Concrete Subject
+
+
+
+
+
+@enduml

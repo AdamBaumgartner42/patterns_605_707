@@ -11,6 +11,13 @@ Text_Impl::~Text_Impl()
 {
 }
 
+void Text_Impl::serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
+{
+	whitespace->prettyIndentation(writer);
+	*writer << getData();
+	whitespace->newLine(writer);
+}
+
 const std::string &	Text_Impl::getName(void)
 {
 	return getNodeName();
@@ -87,16 +94,17 @@ void			Text_Impl::replaceData(int offset, int count, const std::string & arg)
 	setValue(value.erase(offset, count).insert(offset, arg));
 }
 
-dom::Text *		Text_Impl::splitText(int offset)
+std::shared_ptr<dom::Text>		Text_Impl::splitText(int offset)
 {
 	try
 	{
-		dom::Text *	text	= new Text_Impl(substringData(offset, getLength() - offset), document);
+		std::shared_ptr<dom::Text>
+		  text(std::shared_ptr<Text>(new Text_Impl(substringData(offset, getLength() - offset), document)));
 
 		setValue(substringData(0, offset));
 
 		if (getParentNode() != 0)
-			insertBefore(text, getNextSibling());
+			getParentNode()->insertBefore(text, getNextSibling());
 
 		return text;
 	}

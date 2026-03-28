@@ -6,6 +6,10 @@ set_property(TARGET Patterns PROPERTY CXX_STANDARD 20)
 target_sources(Patterns PUBLIC
 	Attr.C
 	Attr.H
+	Builder.C
+	Builder.H
+	Director.C
+	Director.H
 	Document.C
 	Document.H
 	Element.C
@@ -24,4 +28,13 @@ target_sources(Patterns PUBLIC
 	XMLTokenizer.H
 	XMLValidator.C
 	XMLValidator.H
+	ValidChildren.C
+	ValidChildren.H
+	WhitespaceStrategy.H
+	ISubject.H
+	IObserver.H
+	Observer.C
+	Observer.H
+	ChangeManager.C
+	ChangeManager.H
 	)
