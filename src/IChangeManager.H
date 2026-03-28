@@ -10,7 +10,7 @@ public:
     virtual ~IChangeManager() = default;
     virtual void Register(ISubject* subject, IObserver *observer) = 0;
     virtual void Unregister(ISubject* subject, IObserver *observer) = 0;
-    virtual void Notify(Subject* subject) = 0;
+    virtual void Notify(ISubject* subject) = 0;
 };
 
 

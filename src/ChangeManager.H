@@ -12,9 +12,9 @@ private:
     std::map<Subject*, std::list<IObserver*>> subjectObserverMap;
 
 public:
-    void Register(Subject* subject, IObserver* observer) override;
-    void Unregister(Subject* subject, IObserver* observer) override;
-    void Notify(Subject* subject) override;
+    void Register(ISubject* subject, IObserver* observer) override;
+    void Unregister(ISubject* subject, IObserver* observer) override;
+    void Notify(ISubject* subject) override;
 };
 
 
