@@ -1,0 +1,45 @@
+@startuml
+
+class CBackgroundInfoLoader {
+    + SetObserver()
+}
+
+class CMusicInfoLoader {
+    + SetObserver()
+}
+
+class BackgroundLoaderObserver {
+    + OnItemLoaded()
+}
+
+class CGUIWindowMusicBase {
+    # m_infoLoader : CMusicInfoLoader
+
+}
+
+class CGUIWindowMusicPlaylist {
+    # m_infoLoader : CMusicInfoLoader
+    + OnItemLoaded()
+
+}
+
+
+CBackgroundInfoLoader -> BackgroundLoaderObserver : Observer
+
+CBackgroundInfoLoader <|-- CMusicInfoLoader
+
+BackgroundLoaderObserver <|-- CGUIWindowMusicBase
+
+CGUIWindowMusicBase <|-- CGUIWindowMusicPlaylist
+
+CMusicInfoLoader --* CGUIWindowMusicPlaylist : Subject
+
+note left of CBackgroundInfoLoader : Subject
+
+note left of CMusicInfoLoader : Concrete Subject
+
+note right of BackgroundLoaderObserver : Observer
+
+note right of CGUIWindowMusicPlaylist : Concrete Observer
+
+@enduml
