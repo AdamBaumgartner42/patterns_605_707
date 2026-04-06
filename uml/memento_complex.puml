@@ -1,0 +1,42 @@
+@startuml
+
+
+class XMLValidator
+{
+    -schema : std::vector<ValidChildren *>
+    +save() : XMLVMemento
+    +restore(XMLVMemento& ) : void
+}
+
+class XMLVMemento 
+{
+    -deepCopy : std::vector<ValidChildren>
+    -XMLVMemento(std::vector<ValidChildren *> schema)
+}
+
+class SaveState
+{
+    +history : std::stack<XMLValidtor::XMLVMemento>
+    +save(XMLValidator& ) : void 
+    +undo(XMLValidator& ) : bool
+}
+
+
+note top of XMLValidator : Originator
+
+note top of XMLVMemento : Memento
+
+note left of SaveState : Caretaker
+
+
+XMLVMemento --o SaveState : Memento
+
+XMLValidator .> XMLVMemento
+
+
+
+
+
+
+
+@enduml

@@ -168,6 +168,8 @@ void testValidator(int argc, char** argv)
 	// element contains attributes:  attribute, attribute2
 	//
 	XMLValidator	xmlValidator;
+
+
 	ValidChildren *	schemaElement	= xmlValidator.addSchemaElement("");
 	schemaElement->addValidChild("document", false);
 	schemaElement	= xmlValidator.addSchemaElement("document");

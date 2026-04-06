@@ -68,3 +68,43 @@ bool ValidChildren::childIsValid(const std::string & child, bool isAttribute)
 
 	return false;
 }
+
+
+XMLValidator::XMLVMemento::XMLVMemento(std::vector<ValidChildren *> original){
+	for (auto ptr : original){
+		if (ptr){
+			deepCopy.push_back(*ptr);
+		}	
+	}
+}
+
+XMLValidator::XMLVMemento XMLValidator::save() {
+	return XMLVMemento(schema);
+}
+
+void XMLValidator::restore(const XMLVMemento& m) {
+	
+	for (auto ptr : schema) {
+		delete ptr;
+	}
+
+	schema.clear();
+
+	for (auto& obj : m.deepCopy) {
+		schema.push_back(new ValidChildren(obj));
+	}
+}
+
+void SaveState::save (XMLValidator& validator){
+	SaveState::history.push(validator.save());
+}
+
+bool SaveState::undo(XMLValidator& validator){
+	if (SaveState::history.empty()){
+		return false;
+	}
+
+	validator.restore(history.top());
+	history.pop();
+	return true;
+}

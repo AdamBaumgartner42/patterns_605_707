@@ -1,0 +1,44 @@
+@startuml
+
+
+class XMLValidator
+{
+    -int state
+    +save() : XMLVMemento
+    +restore(XMLVMemento& ) : void
+
+
+}
+
+class XMLVMemento 
+{
+    -int state
+    -XMLVMemento(int s)
+}
+
+class SaveState
+{
+    +history : std::stack<XMLValidtor::XMLVMemento>
+    +save(XMLValidator& ) : void 
+    +undo(XMLValidator& ) : bool
+}
+
+
+note top of XMLValidator : Originator
+
+note top of XMLVMemento : Memento
+
+note left of SaveState : Caretaker
+
+
+XMLVMemento --o SaveState : Memento
+
+XMLValidator .> XMLVMemento
+
+
+
+
+
+
+
+@enduml
