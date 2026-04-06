@@ -38,3 +38,22 @@ public:
 	virtual bool					canAddText(dom::Element * element);
 	virtual bool					canAddAttribute(dom::Element * element, std::string newAttribute);
 };
+
+class XMLVMemento
+{
+public: 
+	virtual ~XMLVMemento();
+
+private:
+	friend class XMLValidator;
+	XMLVMemento();
+
+	void SetState(State*);
+	State* GetState();
+
+};
+
+class SaveState
+{
+	XMLVMemento * _state
+};
