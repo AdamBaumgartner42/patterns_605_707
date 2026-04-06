@@ -68,3 +68,33 @@ bool ValidChildren::childIsValid(const std::string & child, bool isAttribute)
 
 	return false;
 }
+
+void XMLValidator::setValue(int n){
+	XMLValidator::value = n;
+}
+
+int XMLValidator::getValue(){
+	return XMLValidator::value;
+}
+
+XMLValidator::XMLVMemento XMLValidator::save() {
+	return XMLVMemento(value);
+}
+
+void XMLValidator::restore(const XMLVMemento& m) {
+	value = m.state;
+}
+
+void SaveState::save (XMLValidator& validator){
+	SaveState::history.push(validator.save());
+}
+
+bool SaveState::undo(XMLValidator& validator){
+	if (SaveState::history.empty()){
+		return false;
+	}
+
+	validator.restore(history.top());
+	history.pop();
+	return true;
+}

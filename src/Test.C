@@ -168,6 +168,22 @@ void testValidator(int argc, char** argv)
 	// element contains attributes:  attribute, attribute2
 	//
 	XMLValidator	xmlValidator;
+
+	// Simple Memento Test
+	SaveState caretaker;
+	xmlValidator.setValue(10);
+	caretaker.save(xmlValidator);
+	xmlValidator.setValue(25);
+	printf("Validator state after update: %d\n", xmlValidator.getValue());
+	if(caretaker.undo(xmlValidator)){
+		printf("Validator state after undo: %d\n", xmlValidator.getValue());
+	}
+	// end Memento test
+
+
+
+
+
 	ValidChildren *	schemaElement	= xmlValidator.addSchemaElement("");
 	schemaElement->addValidChild("document", false);
 	schemaElement	= xmlValidator.addSchemaElement("document");
