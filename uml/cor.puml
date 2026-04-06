@@ -1,0 +1,31 @@
+@startuml
+
+
+class Client{}
+
+
+class Handler{
+    +HandleRequest()
+}
+
+
+class Document{
+    +HandleRequest()
+}
+
+
+class Element{
+    +HandleRequest()
+}
+
+
+
+Handler -> Handler : successor
+
+Client -> Handler 
+
+Handler <|-- Document
+Handler <|-- Element
+
+
+@enduml

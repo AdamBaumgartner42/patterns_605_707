@@ -3,12 +3,13 @@
 
 #include <string>
 #include "NodeList.H"
+#include "Handler.H"
 
 namespace dom
 {
 	class Document;
 
-	class Node
+	class Node : public Handler
 	{
 	public:
 		static const short		ATTRIBUTE_NODE	= 0;
