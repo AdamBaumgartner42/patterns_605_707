@@ -45,15 +45,14 @@ public:
 	virtual ~XMLVMemento();
 
 private:
-	friend class XMLValidator;
+	friend class XMLValidator; // Able to access private member data of XMLValidator
 	XMLVMemento();
 
-	void SetState(State*);
-	State* GetState();
-
+	void SetState(void); 
+	std::vector<ValidChildren *> GetState(void);
 };
 
 class SaveState
 {
-	XMLVMemento * _state
+	std::vector<ValidChildren> _saved_schema;
 };

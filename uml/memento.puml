@@ -1,0 +1,41 @@
+@startuml
+
+
+class XMLValidator
+{
+    +CreateMemento() 
+    +SetMemento()
+
+
+}
+
+class XMLVMemento 
+{
+    +SetState() : void
+    +GetState() : std::vector<ValidChildren*>
+}
+
+class SaveState
+{
+    - saved_schema : std::vector<ValidChildren>
+}
+
+
+note top of XMLValidator : Originator
+
+note top of XMLVMemento : Memento
+
+note top of SaveState : Caretaker
+
+
+XMLVMemento -o SaveState : Memento
+
+XMLValidator .> XMLVMemento
+
+
+
+
+
+
+
+@enduml
