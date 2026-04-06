@@ -11,6 +11,8 @@ protected:
 
 public: 
     void setNext(std::shared_ptr<dom::Node>);
+    // Missing //
+    // HandleRequest
 };
 
 #endif
