@@ -3,17 +3,15 @@
 
 class XMLValidator
 {
-    -int state
+    -std::vector<ValidChildren *> schema
     +save() : XMLVMemento
     +restore(XMLVMemento& ) : void
-
-
 }
 
 class XMLVMemento 
 {
-    -int state
-    -XMLVMemento(int s)
+    -std::vector<ValidChildren> deepCopy
+    -XMLVMemento(std::vector<ValidChildren *> schema)
 }
 
 class SaveState

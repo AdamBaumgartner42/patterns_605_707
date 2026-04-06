@@ -28,9 +28,8 @@ class XMLValidator
 {
 private:
 	std::vector<ValidChildren *>	schema;
-	int value; // adding a simple value to use with my first memento
 public:
-	XMLValidator(void) : value(0)	{}
+	XMLValidator(void) {}
 	~XMLValidator() { for (int i = 0; i < schema.size(); i++) delete schema[i]; }
 
 	virtual ValidChildren *				addSchemaElement(std::string element);
@@ -40,15 +39,12 @@ public:
 	virtual bool					canAddText(dom::Element * element);
 	virtual bool					canAddAttribute(dom::Element * element, std::string newAttribute);
 
-	virtual void 	setValue (int n);
-	virtual int 	getValue ();
-
 	class XMLVMemento{
 	public:
 		friend class XMLValidator;
 	private:
-		int state;
-		XMLVMemento(int s) : state(s) {}
+		std::vector<ValidChildren> deepCopy;
+		XMLVMemento(std::vector<ValidChildren *> original);
 	};
 
 	XMLVMemento save();

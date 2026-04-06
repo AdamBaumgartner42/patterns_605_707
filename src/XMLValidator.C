@@ -69,20 +69,30 @@ bool ValidChildren::childIsValid(const std::string & child, bool isAttribute)
 	return false;
 }
 
-void XMLValidator::setValue(int n){
-	XMLValidator::value = n;
-}
 
-int XMLValidator::getValue(){
-	return XMLValidator::value;
+XMLValidator::XMLVMemento::XMLVMemento(std::vector<ValidChildren *> original){
+	for (auto ptr : original){
+		if (ptr){
+			deepCopy.push_back(*ptr);
+		}	
+	}
 }
 
 XMLValidator::XMLVMemento XMLValidator::save() {
-	return XMLVMemento(value);
+	return XMLVMemento(schema);
 }
 
 void XMLValidator::restore(const XMLVMemento& m) {
-	value = m.state;
+	
+	for (auto ptr : schema) {
+		delete ptr;
+	}
+
+	schema.clear();
+
+	for (auto& obj : m.deepCopy) {
+		schema.push_back(new ValidChildren(obj));
+	}
 }
 
 void SaveState::save (XMLValidator& validator){
