@@ -9,7 +9,7 @@ namespace dom
 {
 	class Document;
 
-	class Node : public Handler
+	class Node
 	{
 	public:
 		static const short		ATTRIBUTE_NODE	= 0;

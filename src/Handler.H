@@ -7,11 +7,10 @@
 class Handler{
 
 protected:
-    std::shared_ptr<Node_Impl> next;
+    std::shared_ptr<dom::Node> next;
 
 public: 
-    void setNext(std::shared_ptr<Node_Impl>);
-
+    void setNext(std::shared_ptr<dom::Node>);
 };
 
 #endif

@@ -1,5 +1,5 @@
 #include "Handler.H"
 
-void Handler::setNext(std::shared_ptr<Node_Impl> n){
+void Handler::setNext(std::shared_ptr<dom::Node> n){
     Handler::next = n;
 }
