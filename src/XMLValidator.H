@@ -2,6 +2,7 @@
 #include <fstream>
 #include <ios>
 #include <vector>
+#include <stack>
 
 #include "Element.H"
 
@@ -27,6 +28,7 @@ class XMLValidator
 {
 private:
 	std::vector<ValidChildren *>	schema;
+	int value; // adding a simple value to use with my first memento
 public:
 	XMLValidator(void)	{}
 	~XMLValidator() { for (int i = 0; i < schema.size(); i++) delete schema[i]; }
@@ -37,22 +39,25 @@ public:
 	virtual bool					canAddElement(dom::Element * element, std::string newElement);
 	virtual bool					canAddText(dom::Element * element);
 	virtual bool					canAddAttribute(dom::Element * element, std::string newAttribute);
-};
 
-class XMLVMemento
-{
-public: 
-	virtual ~XMLVMemento();
+	class XMLVMemento{
+	public:
+		friend class XMLValidator;
+	private:
+		int state;
+		XMLVMemento(int s) : state(s) {}
+	};
 
-private:
-	friend class XMLValidator; // Able to access private member data of XMLValidator
-	XMLVMemento();
+	XMLVMemento save() {
+		return XMLVMemento(value);
+	}
 
-	void SetState(void); 
-	std::vector<ValidChildren *> GetState(void);
+	void restore(const XMLVMemento& m) {
+		value = m.state;
+	}
 };
 
 class SaveState
 {
-	std::vector<ValidChildren> saved_schema;
+	std::stack<XMLValidator::XMLVMemento> history;
 };
