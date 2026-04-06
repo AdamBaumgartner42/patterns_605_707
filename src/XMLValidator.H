@@ -54,5 +54,5 @@ private:
 
 class SaveState
 {
-	std::vector<ValidChildren> _saved_schema;
+	std::vector<ValidChildren> saved_schema;
 };
