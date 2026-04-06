@@ -3,6 +3,7 @@
 
 #include <string>
 #include "NodeList.H"
+#include "Handler.H"
 
 namespace dom
 {
