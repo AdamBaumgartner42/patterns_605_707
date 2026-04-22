@@ -1,0 +1,49 @@
+@startuml
+
+
+class User{}
+note left of User : Client
+
+
+
+class Test_file{}
+note left of Test_file : Invoker
+
+
+
+class Command{
+    +Execute()
+}
+
+
+class RunSerial{
+    +Execute()
+}
+
+
+
+class Receiver{
+    +RunSerialTask()
+}
+
+
+
+User -> Receiver
+Test_file o-> Command
+Command <|-- RunSerial
+Receiver <- RunSerial : receiver
+
+
+
+
+@enduml
+
+
+
+
+
+note top of Command : name
+
+note top of RunSerial : ConcreteCommand
+
+note top of Receiver : Receiver
