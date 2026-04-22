@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <iostream>
+#include <string>
 #include "Attr.H"
 #include "Document.H"
 #include "Element.H"
@@ -6,6 +8,7 @@
 #include "XMLTokenizer.H"
 #include "XMLSerializer.H"
 #include "XMLValidator.H"
+#include "Command.H"
 
 void testTokenizer(int argc, char** argv);
 void testSerializer(int argc, char** argv);
@@ -21,7 +24,7 @@ void printUsage(void)
 
 int main(int argc, char** argv)
 {
-	if (argc < 3)
+	if (argc < 2)
 	{
 		printUsage();
 		exit(0);
@@ -41,6 +44,30 @@ int main(int argc, char** argv)
 	case 'v':
 		testValidator(argc, argv);
 		break;
+
+	// Dynamic Operation	
+	case 'C':
+	case 'c':
+
+		Receiver receiver;
+		RunSerial runSerial(receiver);
+
+		Command* command = &runSerial;
+
+		while (true) {
+			std::cout << "> ";
+			std::string input;
+			std::getline(std::cin, input);
+
+			if (input == "exit") break;
+			if (input == "runserial")
+			{
+				command->Execute();
+				continue;
+			}
+
+		}
+	
 	}
 }
 
