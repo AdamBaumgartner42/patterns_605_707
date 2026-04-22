@@ -8,6 +8,7 @@
 #include "XMLTokenizer.H"
 #include "XMLSerializer.H"
 #include "XMLValidator.H"
+#include "Command.H"
 
 void testTokenizer(int argc, char** argv);
 void testSerializer(int argc, char** argv);
@@ -23,7 +24,7 @@ void printUsage(void)
 
 int main(int argc, char** argv)
 {
-	if (argc < 3)
+	if (argc < 2)
 	{
 		printUsage();
 		exit(0);
@@ -47,16 +48,23 @@ int main(int argc, char** argv)
 	// Dynamic Operation	
 	case 'C':
 	case 'c':
+		RunSerial runSerial;
+		Command* command = &runSerial;
+
 		while (true) {
 			std::cout << "> ";
 			std::string input;
 			std::getline(std::cin, input);
 
 			if (input == "exit") break;
-
-			std::cout << input << "\n";
+			if (input == "runserial")
+			{
+				command->Execute();
+				continue;
+			}
 
 		}
+	
 	}
 }
 
