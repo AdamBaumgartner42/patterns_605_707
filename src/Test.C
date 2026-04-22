@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <iostream>
+#include <string>
 #include "Attr.H"
 #include "Document.H"
 #include "Element.H"
@@ -41,6 +43,20 @@ int main(int argc, char** argv)
 	case 'v':
 		testValidator(argc, argv);
 		break;
+
+	// Dynamic Operation	
+	case 'C':
+	case 'c':
+		while (true) {
+			std::cout << "> ";
+			std::string input;
+			std::getline(std::cin, input);
+
+			if (input == "exit") break;
+
+			std::cout << input << "\n";
+
+		}
 	}
 }
 
