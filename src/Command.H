@@ -1,6 +1,12 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
+class Receiver {
+public:
+    void RunSerialTask() const;
+    
+};
+
 class Command {
 public:
     virtual ~Command() = default;
@@ -8,14 +14,12 @@ public:
 };
 
 class RunSerial : public Command {
-public:
-    RunSerial();
-    void Execute() const override;
-};
+private:
+    const Receiver& m_receiver;
 
-class Receiver {
 public:
-    
+    RunSerial(const Receiver& receiver);
+    void Execute() const override;
 };
 
 

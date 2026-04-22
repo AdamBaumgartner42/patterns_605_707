@@ -48,7 +48,10 @@ int main(int argc, char** argv)
 	// Dynamic Operation	
 	case 'C':
 	case 'c':
-		RunSerial runSerial;
+
+		Receiver receiver;
+		RunSerial runSerial(receiver);
+
 		Command* command = &runSerial;
 
 		while (true) {

@@ -1,10 +1,13 @@
 #include <iostream>
 #include "Command.H"
 
-RunSerial::RunSerial() = default;
+void Receiver::RunSerialTask() const {
+    std::cout << "Receiver: running serial task\n";
+}
 
+RunSerial::RunSerial(const Receiver& receiver) : m_receiver(receiver) {}
 
 void RunSerial::Execute() const {
-
-    std::cout << "Hello World\n" ;
+    m_receiver.RunSerialTask();
 }
+
