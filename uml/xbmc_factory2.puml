@@ -1,0 +1,15 @@
+@startuml
+rectangle "Factory Pattern" {
+    abstract class AbstractCreator
+
+    class ConcreteCreator
+
+    note "This applies to both classes" as NavajoWhite
+
+    N .. A
+    Shared note for A and B
+    end note
+
+    AbstractCreator <|-- ConcreteCreator
+}
+@enduml

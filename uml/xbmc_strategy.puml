@@ -1,0 +1,75 @@
+@startuml
+
+class CFileCache {
+    +Open()
+    +Process()
+    +OnExit()
+    +Close()
+}
+
+note left of CFileCache : Context
+
+abstract class CCacheStrategy{
+    +Open()
+    +Close()
+    +GetMaxWriteSize()
+    +WriteToCache()
+    +ReadFromCache()
+    +WaitForData()
+    +Seek()
+    +Reset()
+    +CachedDataEndPosIfSeekTo()
+    +CachedDataStartPos()
+    +CachedDataEndPos()
+    +IsCachedPosition()
+    +CreateNew()
+}
+
+note right of CCacheStrategy : Strategy
+
+
+class CSimpleFileCache{
+    +Open()
+    +Close()
+    +GetMaxWriteSize()
+    +WriteToCache()
+    +ReadFromCache()
+    +WaitForData()
+    +Seek()
+    +Reset()
+    +CachedDataEndPosIfSeekTo()
+    +CachedDataStartPos()
+    +CachedDataEndPos()
+    +IsCachedPosition()
+    +CreateNew()
+}
+note right of CSimpleFileCache : Concrete Strategy A
+
+class CCircularCache{
+    +Open()
+    +Close()
+    +GetMaxWriteSize()
+    +WriteToCache()
+    +ReadFromCache()
+    +WaitForData()
+    +Seek()
+    +Reset()
+    +CachedDataEndPosIfSeekTo()
+    +CachedDataStartPos()
+    +CachedDataEndPos()
+    +IsCachedPosition()
+    +CreateNew()
+}
+
+note right of CCircularCache : Concrete Strategy B
+
+CFileCache *-> CCacheStrategy
+CCacheStrategy <|-- CSimpleFileCache
+CCacheStrategy <|-- CCircularCache
+
+
+
+
+
+
+@enduml

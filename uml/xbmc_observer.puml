@@ -1,45 +1,43 @@
 @startuml
 
-class CBackgroundInfoLoader {
-    + SetObserver()
+
+
+class Observable{
+    +RegisterObserver()
+    +UnregisterObserver()
+    +NotifyObservers()
 }
 
-class CMusicInfoLoader {
-    + SetObserver()
+note top of Observable : Subject
+
+
+
+class CGameSettings {
+    -m_stretchMode
+    +StretchMode()
+    +SetStretchMode()
 }
 
-class BackgroundLoaderObserver {
-    + OnItemLoaded()
+note left of CGameSettings : ConcreteSubject
+
+class Observer {
+    +Notify()
 }
 
-class CGUIWindowMusicBase {
-    # m_infoLoader : CMusicInfoLoader
+note top of Observer : Observer
 
+class GUIGameSettings {
+    -m_renderSettings
+    +Notify()
 }
 
-class CGUIWindowMusicPlaylist {
-    # m_infoLoader : CMusicInfoLoader
-    + OnItemLoaded()
-
-}
+note right of GUIGameSettings : ConcreteObserver
 
 
-CBackgroundInfoLoader -> BackgroundLoaderObserver : Observer
 
-CBackgroundInfoLoader <|-- CMusicInfoLoader
-
-BackgroundLoaderObserver <|-- CGUIWindowMusicBase
-
-CGUIWindowMusicBase <|-- CGUIWindowMusicPlaylist
-
-CMusicInfoLoader --* CGUIWindowMusicPlaylist : Subject
-
-note left of CBackgroundInfoLoader : Subject
-
-note left of CMusicInfoLoader : Concrete Subject
-
-note right of BackgroundLoaderObserver : Observer
-
-note right of CGUIWindowMusicPlaylist : Concrete Observer
+Observable <|-- CGameSettings
+Observable -> Observer
+Observer <|-- GUIGameSettings
+CGameSettings <- GUIGameSettings
 
 @enduml

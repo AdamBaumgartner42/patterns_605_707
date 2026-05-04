@@ -1,0 +1,42 @@
+@startuml
+
+class CDVDSubtitleParserMircoDVD{
+    +Open()
+}
+
+abstract CSubtitleParserText{
+    +Open()
+}
+
+class CSubtitlesAdapter{
+    +AddSubtitle()
+}
+
+class CDVDSubtitlesLibass {
+    +AddEvent()
+}
+
+circle Client {}
+
+
+note left of CSubtitlesAdapter : Adaptee
+
+note top of CDVDSubtitleParserMircoDVD : Target / Adapter
+
+Client -> CDVDSubtitleParserMircoDVD
+
+CDVDSubtitleParserMircoDVD -|> CSubtitleParserText
+
+CDVDSubtitleParserMircoDVD --|> CSubtitlesAdapter :  <<private>>
+
+CSubtitlesAdapter .> CDVDSubtitlesLibass
+
+@enduml
+
+
+
+
+
+
+
+

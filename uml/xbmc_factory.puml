@@ -1,0 +1,32 @@
+@startuml
+
+
+abstract class IRendererFactory {
+    +CreateRenderer()
+}
+
+note right of IRendererFactory : Abstract Creator
+
+class CRendererFactoryOpenGL {
+    CreateRenderer()
+}
+
+note right of CRendererFactoryOpenGL : Concrete Creator
+
+
+class ConcreteProduct {}
+
+class Product{}
+
+
+
+
+IRendererFactory <|-- CRendererFactoryOpenGL
+ConcreteProduct <- CRendererFactoryOpenGL 
+Product <-- ConcreteProduct
+
+
+
+
+
+@enduml

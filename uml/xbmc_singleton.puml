@@ -1,0 +1,10 @@
+@startuml
+
+
+class CGenericTouchActionHandler {
+    - CGenericTouchActionHandler()
+    + static GetInstance() : CGenericTouchActionHandler&
+}
+
+note top of CGenericTouchActionHandler : Singleton
+@enduml
